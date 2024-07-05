@@ -5,7 +5,7 @@ Following the 30 days of Python challenge: https://github.com/Asabeneh/30-Days-O
 Difference between `list`, `set` and `tuple`:
 
 | Feature         | List                            | Set                            | Tuple                            |
-|-----------------|---------------------------------|--------------------------------|-------------------------------- -|
+|:---------------:|:-------------------------------:|:------------------------------:|:--------------------------------:|
 | **Mutability**  | Mutable (add/remove/change)     | Mutable (for adding/removing)  | Immutable                        |
 | **Ordered**     | Ordered                         | Unordered                      | Ordered                          |
 | **Duplicates**  | Allows duplicates               | Does not allow duplicates      | Allows duplicates                |
