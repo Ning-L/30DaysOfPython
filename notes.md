@@ -98,11 +98,9 @@ print(age)
 list("ABCSOIFE") # output: ['A', 'B', 'C', 'S', 'O', 'I', 'F', 'E']
 ```
 
-# Day 3
+# Day 3: Operators
 
-## Operators
-
-### Assignment
+## Assignment
 
 Python use `=` for assignment, combine other operator with `=` can do operation then directly assign the value,
 for example:
@@ -151,17 +149,17 @@ print(result)  # Output: 6
 - The **`<<`** and **`>>`** are the bitwise left and right shift operators in Python.
 The equivalent in R is `bitwShiftL()` and `bitwShiftR`.
 
-### Comparison
+## Comparison
 
 Apart from the ordinary comparison operators such as `>`, `<`, `==`, `!=`,
 Python uses also the following keywords for comparison:
 
-* *is*: Returns `True` if both variables are (point to) the same object (`x is y`) (equivalent to `identical() `in R)
+* *is*: Returns `True` if both variables are (point to) the same object (`x is y`) (equivalent to `identical()` in R)
 * *is not*: Returns `True` if both variables are not the same object (`x is not y`)
-* *in*: Returns `True` if the queried list contains a certain item (`x in y`) (equivalent to `%in%`in R)
+* *in*: Returns `True` if the queried list contains a certain item (`x in y`) (equivalent to `%in%` in R)
 * *not in*: Returns `True` if the queried list doesn't have a certain item (`x in y`)
 
-### Logical operators
+## Logical operators
 
 | Python  |     R    |
 |:-------:|:--------:|
