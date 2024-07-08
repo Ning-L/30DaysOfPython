@@ -97,3 +97,75 @@ print(age)
 ```py
 list("ABCSOIFE") # output: ['A', 'B', 'C', 'S', 'O', 'I', 'F', 'E']
 ```
+
+# Day 3
+
+## Operators
+
+### Assignment
+
+Python use `=` for assignment, combine other operator with `=` can do operation then directly assign the value,
+for example:
+
+```py
+x += 3
+# equals to
+x = x + 3
+
+x *= 3
+# equals to
+x = x * 3
+
+x |= 3
+# equals to
+x = x | 3
+
+x ^= 3
+# equals 
+x = x ^ 3
+
+x >>= 3
+# equals 
+x = x >> 3
+```
+
+Attention:
+
+- In Python, the **`^`** is the bitwise XOR (exclusive OR) operator.
+The corresponding version in R is the function `bitwOr()`.
+
+The bitwise XOR operator compares each bit of its operands.
+If the corresponding bits of the operands are different, the resulting bit is set to 1.
+If the corresponding bits are the same, the resulting bit is set to 0.
+For example:
+
+```py
+a = 5  # in binary: 0101
+b = 3  # in binary: 0011
+
+result = a ^ b  # result will be 0110 in binary, wichi equals to 6
+
+print(result)  # Output: 6
+```
+
+- The **`<<`** and **`>>`** are the bitwise left and right shift operators in Python.
+The equivalent in R is `bitwShiftL()` and `bitwShiftR`.
+
+### Comparison
+
+Apart from the ordinary comparison operators such as `>`, `<`, `==`, `!=`,
+Python uses also the following keywords for comparison:
+
+* *is*: Returns `True` if both variables are (point to) the same object (`x is y`) (equivalent to `identical() `in R)
+* *is not*: Returns `True` if both variables are not the same object (`x is not y`)
+* *in*: Returns `True` if the queried list contains a certain item (`x in y`) (equivalent to `%in%`in R)
+* *not in*: Returns `True` if the queried list doesn't have a certain item (`x in y`)
+
+### Logical operators
+
+| Python  |     R    |
+|:-------:|:--------:|
+| a and b | and & b  |
+| a or b  | and \| b |
+| not a   | ! a      |
+
