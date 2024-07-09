@@ -323,7 +323,7 @@ print(example.index(sub_string))   # Output: 0 (first occurrence)
 print(example.rindex(sub_string))  # Output: 7 (last occurrence)
 ```
 
-P.S.: there's a error in the doc of day 4 [L376](https://github.com/Asabeneh/30-Days-Of-Python/blob/2f3a64c82fdca90f040f676d17aa6b0e430228ec/04_Day_Strings/04_strings.md?plain=1#L376),
+P.S.: there's an error in the doc of day 4 [L376](https://github.com/Asabeneh/30-Days-Of-Python/blob/2f3a64c82fdca90f040f676d17aa6b0e430228ec/04_Day_Strings/04_strings.md?plain=1#L376),
 the `print(challenge.rindex(sub_string))` should be 7 instead of 8.
 
 
@@ -356,6 +356,18 @@ print(num.isnumeric()) # True
 num = '10.5'
 print(num.isnumeric()) # False
 
+```
+
+Other examples:
+
+| String   | `isdecimal()` | `isdigit()` | `isnumeric()` |
+|:--------:|:-------------:|:-----------:|:-------------:|
+| `123`    | `True`        | `True`      | `True`        |
+| `123.45` | `False`       | `False`     | `False`       |
+| `²`      | `False`       | `True`      | `True`        |
+| `Ⅻ`     | `False`       | `False`     | `True`        |
+
+```py
 ## isidentifier(), checks if a string is a valid variable name
 challenge = '30DaysOfPython'
 print(challenge.isidentifier()) # False, because it starts with a number
