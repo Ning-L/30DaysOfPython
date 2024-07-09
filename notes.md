@@ -504,14 +504,6 @@ orange_mango_lemon = fruits[-3:] # this will give starting from -3 to the end,['
 reverse_fruits = fruits[::-1] # a negative step will take the list in reverse order,['lemon', 'mango', 'orange', 'banana']
 ```
 
-## Modifying
-
-Use the assignment of new values to modify items
-
-```py
-fruits[1:3] = ["a", "b"] # ['banana', 'a', 'b', 'lemon']
-```
-
 ## Checking existance of list items
 
 Use `in` operator.
@@ -522,6 +514,12 @@ Use `in` operator.
 ```
 
 ## Modifying items of a list
+
+* Use the assignment of new values to modify items
+
+```py
+fruits[1:3] = ["a", "b"] # ['banana', 'a', 'b', 'lemon']
+```
 
 * Adding
 
