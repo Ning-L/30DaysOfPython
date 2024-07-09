@@ -67,40 +67,94 @@ name.split()[0][0] + name.split()[1][0] + name.split()[2][0] # PFE
 name = 'Coding For All'
 name.split()[0][0] + name.split()[1][0] + name.split()[2][0] # CFA
 
-# 20. Use index to determine the position of the first occurrence of C in Coding For All.
-# 21. Use index to determine the position of the first occurrence of F in Coding For All.
-# 22. Use rfind to determine the position of the last occurrence of l in Coding For All People.
-# 23. Use index or find to find the position of the first occurrence of the word 'because' in the following sentence: 'You cannot end a sentence with because because because is a conjunction'
-# 24. Use rindex to find the position of the last occurrence of the word because in the following sentence: 'You cannot end a sentence with because because because is a conjunction'
-# 25. Slice out the phrase 'because because because' in the following sentence: 'You cannot end a sentence with because because because is a conjunction'
-# 26. Find the position of the first occurrence of the word 'because' in the following sentence: 'You cannot end a sentence with because because because is a conjunction'
-# 27. Slice out the phrase 'because because because' in the following sentence: 'You cannot end a sentence with because because because is a conjunction'
-# 28. Does '\'Coding For All' start with a substring `Coding`?
-# 29. Does 'Coding For All' end with a substring `coding`?
-# 30. '&nbsp;&nbsp; Coding For All &nbsp;&nbsp;&nbsp; &nbsp;' &nbsp;, remove the left and right trailing spaces in the given string.
-# 31. Which one of the following variables return True when we use the method isidentifier():
+# 20. Use index to determine the position of the first occurrence of C in "Coding For All".
+my_string = "Coding For All"
+my_string.index("C") # 0
+
+# 21. Use index to determine the position of the first occurrence of F in "Coding For All".
+my_string.index("F") # 7
+
+# 22. Use rfind to determine the position of the last occurrence of l in "Coding For All People".
+my_string = "Coding For All People"
+my_string.rfind("l") #13
+
+# 23. Use index or find to find the position of the first occurrence of the word 'because' in the
+# following sentence: 'You cannot end a sentence with because because because is a conjunction'
+my_string = 'You cannot end a sentence with because because because is a conjunction'
+my_string.find("because") # 31
+my_string.index("because") # 31
+
+# 24. Use rindex to find the position of the last occurrence of the word because in the
+# following sentence: 'You cannot end a sentence with because because because is a conjunction'
+my_string.rindex("because") # 47
+
+# 25. Slice out the phrase 'because because because' in the following sentence:
+# 'You cannot end a sentence with because because because is a conjunction'
+my_string.replace("because because because", "")
+## or
+sub_str = "because because because"
+start_idx = my_string.find(sub_str)
+end_idx = start_idx + len(sub_str)
+my_string[:start_idx] + my_string[end_idx + 1:]
+
+# 26. Find the position of the first occurrence of the word 'because' in the following sentence:
+# 'You cannot end a sentence with because because because is a conjunction'
+## idem ex24
+
+# 27. Slice out the phrase 'because because because' in the following sentence:
+# 'You cannot end a sentence with because because because is a conjunction'
+## idem ex25
+
+# 28. Does 'Coding For All' start with a substring "Coding"?
+"Coding For All".startswith("Coding") # True
+
+# 29. Does 'Coding For All' end with a substring "coding"?
+"Coding For All".endswith("coding") # False
+
+# 30. '   Coding For All      ', remove the left and right trailing spaces in the given string.
+my_string = '   Coding For All      '
+my_string.strip() # 'Coding For All'
+
+# 31. Which one of the following variables return `True` when we use the method isidentifier():
     ## - 30DaysOfPython
     ## - thirty_days_of_python
-# 32. The following list contains the names of some of python libraries: ['Django', 'Flask', 'Bottle', 'Pyramid', 'Falcon']. Join the list with a hash with space string.
+"30DaysOfPython".isidentifier() # False, because it starts with a digit
+"thirty_days_of_python".isidentifier() # True
+
+# 32. The following list contains the names of some of python libraries:
+# ['Django', 'Flask', 'Bottle', 'Pyramid', 'Falcon'].
+# Join the list with a hash with space string.
+my_list = ['Django', 'Flask', 'Bottle', 'Pyramid', 'Falcon']
+"# ".join(my_list) # 'Django# Flask# Bottle# Pyramid# Falcon'
+print("Following some Python libraries: %s " %("# ".join(my_list)))
+
 # 33. Use the new line escape sequence to separate the following sentences.
-    ## ```py
     ## I am enjoying this challenge.
     ## I just wonder what is next.
-    ## ```
+print("I am enjoying this challenge." + "\n" + "I just wonder what is next.")
+
 # 34. Use a tab escape sequence to write the following lines.
-    ## ```py
     ## ge     Country   City
     ## 50     Finland   Helsinki
-    ## ```
+print("ge\tCountry\tCity")
+print("50\tFinland\tHelsinki")
+
 # 35. Use the string formatting method to display the following:
-    ## ```sh
     ## radius = 10
     ## area = 3.14 * radius ** 2
     ## The area of a circle with radius 10 is 314 meters square.
-    ## ```
+radius = 10
+area = 3.14 * radius ** 2
+print("radius = ", radius)
+print("area = 3.14 * radius ** 2")
+## use % operator
+print("The area of a circle with radius %d is %.0f meters square." %(radius, area))
+## str.format
+print("The area of a circle with radius {} is {:.0f} meters square.".format(radius, area))
+## f-strings
+print(f"The area of a circle with radius {radius} is {area:.0f} meters square.")
 
 # 36. Make the following using string formatting methods:
-    ## ```sh
     ## 8 + 6 = 14
     ## 8 - 6 = 2
     ## 8 * 6 = 48
@@ -108,4 +162,12 @@ name.split()[0][0] + name.split()[1][0] + name.split()[2][0] # CFA
     ## 8 % 6 = 2
     ## 8 // 6 = 1
     ## 8 ** 6 = 262144
-    ## ```
+a = 8
+b = 6
+print("{} + {} = {}".format(a, b, a + b))
+print("{} - {} = {}".format(a, b, a - b))
+print("{} * {} = {}".format(a, b, a * b))
+print("{} / {} = {:.2f}".format(a, b, a / b))
+print("{} % {} = {}".format(a, b, a % b))
+print("{} // {} = {}".format(a, b, a // b))
+print("{} ** {} = {}".format(a, b, a ** b))
