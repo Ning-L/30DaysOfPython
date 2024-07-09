@@ -417,6 +417,8 @@ print(challenge.strip('noth'))  # 'irty days of py'
 challenge = 'thirty days onon of pythoonnn'
 print(challenge.strip('noth')) #  'irty days onon of py'
 
+## lstrip() or rstrip() for removing from left or right
+
 ## replace(), replaces substring with a given string
 challenge = 'thirty days of python'
 print(challenge.replace('python', 'coding')) # 'thirty days of coding'
