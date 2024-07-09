@@ -442,3 +442,82 @@ challenge = 'thirty days of python'
 print(challenge.startswith('thirty')) # True
 print(challenge.startswith('30')) # False
 ```
+
+# Day 5: Lists
+
+| Data Type   | Mutable?       | Ordered? | Unique Elements? | Example                  |
+|:-----------:|:--------------:|:--------:|:----------------:|:------------------------:|
+| **List**    | Yes            | Yes      | Can contain duplicates | `['apple', 'banana', 'cherry']` |
+| **Set**     | Yes            | No       | Unique elements only    | `{'apple', 'banana', 'cherry'}` |
+| **Tuple**   |  No (Immutable) | Yes      | Can contain duplicates | `('apple', 'banana', 'cherry')` |
+| **Dictionary** | Yes            | No       | Keys must be unique    | `{'apple': 'red', 'banana': 'yellow'}` |
+
+A list can be empty or may have different data type items.
+
+## Creation
+
+```py
+## init an empty list
+empty_list = list() # use built-in fct
+empty_list = [] # use square brackets
+
+## list with different data type
+lst = ["Dupont", 25, True, {"country": "France", "city": "Paris"}]
+```
+
+## Accessing items
+
+Using index, which starts from **0** in case of using positive indexing.
+We can also use negative indexing, where `-1` indicates the last item.
+
+## Unpacking list items
+
+Use the `*`:
+
+```py
+first, second, third, *rest, tenth = [1,2,3,4,5,6,7,8,9,10]
+print(first)          # 1
+print(second)         # 2
+print(third)          # 3
+print(rest)           # [4,5,6,7,8,9]
+print(tenth)          # 10
+```
+
+## Slicing items
+
+```py
+## positive idx: lst[start(inclusive):end(exclusive):step]
+fruits = ['banana', 'orange', 'mango', 'lemon']
+all_fruits = fruits[0:4] # it returns all the fruits
+# this will also give the same result as the one above
+all_fruits = fruits[0:] # if we don't set where to stop it takes all the rest
+orange_and_mango = fruits[1:3] # it does not include the first index, until the 3rd but not included
+orange_mango_lemon = fruits[1:]
+orange_and_lemon = fruits[::2] # here we used a 3rd argument, step. It will take every 2cnd item - ['banana', 'mango']
+[1,2,3,4,5,6,7,8,9,10][1:7:2] # [2, 4, 6], from idx1 (2) to idx7 (8), every 2 step, and left side not included
+
+## negative idx: lst[start:end:step]
+fruits = ['banana', 'orange', 'mango', 'lemon']
+all_fruits = fruits[-4:] # it returns all the fruits
+orange_and_mango = fruits[-3:-1] # it does not include the last index, ['orange', 'mango']
+orange_mango_lemon = fruits[-3:] # this will give starting from -3 to the end,['orange', 'mango', 'lemon']
+reverse_fruits = fruits[::-1] # a negative step will take the list in reverse order,['lemon', 'mango', 'orange', 'banana']
+```
+
+## Modifying
+
+Use the assignment of new values to modify items
+
+```py
+fruits[1:3] = ["a", "b"] # ['banana', 'a', 'b', 'lemon']
+```
+
+## Checking existance of list items
+
+Use `in` operator.
+
+```py
+"lime" in fruits # False
+"banana" in fruits # True
+```
+
