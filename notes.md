@@ -521,3 +521,122 @@ Use `in` operator.
 "banana" in fruits # True
 ```
 
+## Modifying items of a list
+
+* Adding
+
+Use the method `append()`
+
+```py
+fruits.append("apple")
+print(fruits) # ['banana', 'a', 'b', 'lemon', 'apple']
+
+fruits.append(['apple pie', 'peach']) #  only allow to add a single element, so stored as a list in the list
+fruits.extend(["c", "d"]) # extend() allows to add multiple items at once
+## or using extend() with a set or a tuple
+```
+
+P.S.: Python's extend() method is designed to concatenate elements to the end of a list,
+regardless of the type of iterable used (list, tuple, or set).
+
+* Inserting
+
+Use method `insert(idx, item)` to insert a single element at a specified index of a list.
+
+```py
+fruits.insert(2, 'watermelon')
+```
+
+* Removing
+
+1. Use method `remove(item)` to remove a specified item.
+
+```py
+fruits.remove('watermelon')
+fruits.remove('c') # only remove the 1st occurrence
+
+# Remove "banana" and "lemon" at once
+fruits = [item for item in fruits if item not in ["banana", "lemon"]]
+# Remove all occurrences of "d"
+fruits = [item for item in fruits if item != 'd']
+```
+
+2. Use method `pop(idx)` to remove a specified item,
+the last item will be removed if no index specified.
+
+```py
+fruits.pop(1)
+fruits.pop() # last item removed
+```
+
+3. Use the keyword `del` can delete a item of a specified index,
+items within index range, or delete the whole list.
+
+```py
+del fruits[0]
+del fruits[:3]
+del fruits
+```
+
+4. Emptying the list with the `clear()` method
+
+```py
+fruits.clear()
+```
+
+## Copying a list
+
+1. by reassigning a list to a new variable: `list2 = list2`,
+`list2` is now a reference of `list1`, the modification on `list2` will affect also `list1`.
+
+2. use the `copy()` method
+
+```py
+lst = ['item1', 'item2']
+lst2 = lst
+lst2.remove("item1") 
+lst = ['item1', 'item2']
+lst_copy = lst.copy()
+```
+
+## Joining lists
+
+1. Use `+` operator, list3 = list1 + list2
+2. Use the `extend()` method, list1.extend(list2)
+
+## Counting items in a list
+
+Use the `count()` method to return the number of times an item appears in a list.
+
+```py
+ages = [22, 19, 24, 25, 26, 24, 25, 24]
+print(ages.count(24)) # 3
+```
+
+## Finding index of an item
+
+The `index()` method returns the index of an item in the list:
+
+```py
+ages = [22, 19, 24, 25, 26, 24, 25, 24]
+print(ages.index(24)) # 2, the 1st occurrence
+```
+
+## Reversing a list
+
+Use the method `reverse()`, list1.reverse()
+
+## Sorting items
+
+Use the method `sort(reverse=False)` or the built-in function `sorted(reverse=False)`.
+By default, both ways order the list in ascending order,
+the method `sort()` will modify the original list. 
+
+```py
+fruits = ['banana', 'orange', 'mango', 'lemon']
+fruits.sort()
+print(fruits) # sorted in alphabetical order, ['banana', 'lemon', 'mango', 'orange']
+fruits.sort(reverse = True)
+print(fruits) # ['orange', 'mango', 'lemon', 'banana']
+```
+
