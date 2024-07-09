@@ -399,6 +399,21 @@ print(result2) # 'HTML# CSS# JavaScript# React'
 challenge = 'thirty days of pythoonnn'
 print(challenge.strip('noth'))  # 'irty days of py'
 
+### stey-by-step:
+#### Stripping from the Beginning:
+# The first character 't' is in 'noth', so it is removed.
+# The next character 'h' is also in 'noth', so it is removed.
+# The third character 'i' is not in 'noth', so stripping from the beginning stops here.
+# At this point, the string becomes: 'irty days of pythoonnn'
+#### Stripping from the End:
+# The last character 'n' is in 'noth', so it is removed.
+# The next character 'n' is also in 'noth', so it is removed.
+# The next character 'n' is also in 'noth', so it is removed.
+# The next character 'o' is in 'noth', so it is removed.
+# The next character 'o' is in 'noth', so it is removed.
+# The next character 'p' is not in 'noth', so stripping from the end stops here.
+# The resulting string becomes: 'irty days of py'
+
 challenge = 'thirty days onon of pythoonnn'
 print(challenge.strip('noth')) #  'irty days onon of py'
 
