@@ -30,7 +30,7 @@ a, b, c, d, *parents = family_members
 # 2. Create fruits, vegetables and animal products tuples.
 # Join the three tuples and assign it to a variable called food_stuff_tp.
 fruits = ("apple", "peach", "pineapple")
-vegetables = ("tomato", "garlic", "garbage")
+vegetables = ("tomato", "garlic", "cabbage")
 animal = ("chicken", "beef", "pork")
 food_stuff_tp = fruits + vegetables + animal
 
