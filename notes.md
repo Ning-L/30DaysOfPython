@@ -715,6 +715,66 @@ Impossible to remove a single item as tuple is immutable, but we can delete the 
 del fruits_and_vegetables
 ```
 
+# Day 7: Sets
+
+Set is unordered and un-indexed, set is used to store unique items, 
+and it is possible to find the union, intersection, difference, symmetric difference, subset, super set and disjoint set among sets.
+
+* Creation with the built-in function `set()` to create an empty set, and `{}` to initiate a set with values:
+
+```py
+my_set = set()
+my_set = {"a", "b", "c"}
+```
+
+* Getting length with the built-in function `len()`.
+* Accessing items in a set with loops to access itmes. See the loop section.
+* Checking an item with the `in` operator.
+* Adding items with `add()` or `update()` method.
+
+```py
+my_set.add("one item")
+my_set.update(["one item", "two item"]) # update takes a list
+```
+
+* Removing items with `remove()` (raise error if item not found), `pop()` (remove a random item and return the removed item) or `discard()`
+
+```py
+st = {'item1', 'item2', 'item3', 'item4'}
+st.remove('item2')
+
+fruits = {'banana', 'orange', 'mango', 'lemon'}
+fruits.pop()  # removes a random item from the set
+removed_item = fruits.pop() # store the removed item in case we are interested in
+```
+
+* Clearing items with `clear()` method.
+* Converting: list and set can be converted to each other, set will remove duplicates and order is lost.
+
+```py
+lst = ['item1', 'item2', 'item3', 'item4', 'item1']
+st = set(lst)  # {'item1', 'item4', 'item3', 'item2'}
+```
+
+* Joining sets with `union()` or `update()` method.
+
+```py
+st1 = {'item1', 'item2', 'item3', 'item4'}
+st2 = {'item5', 'item6', 'item7', 'item8'}
+st3 = st1.union(st2)
+
+st1 = {'item1', 'item2', 'item3', 'item4'}
+st2 = {'item5', 'item6', 'item7', 'item8'}
+st1.update(st2) # st2 contents are added to st1
+```
+
+* Intersection: `st1.intersection(st2)`
+* Subset or supperset: `st1.issubset(st2)`, `st1.issuperset(st2)`
+* Difference: `st1.difference(st2)`
+* Symmetric difference: `st1.symmetric_difference(st2)`, returns all items which exist only in one set.
+* Check if two sets do not have any common item: `st2.isdisjoint(st1) `
+
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
