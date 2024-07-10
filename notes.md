@@ -826,6 +826,97 @@ my_dict = {k: v for k, v in zip(my_keys, my_values)}
 ## attention if lists with different length, zip() will stop pairing when the shortest list is exhausted
 ```
 
+# Day 9: Conditionals
+
+## `if` condition
+
+```py
+a = 3
+if a > 0:
+    print('A is a positive number')
+# A is a positive number
+```
+
+## `if else`
+
+```py
+a = 3
+if a > 0:
+    print('A is a positive number')
+else:
+    print('A is not a positive number')
+```
+
+## `if elif else`
+
+For more than two conditions, we can combine with `elif`.
+```py
+a = 3
+if a > 0:
+    print('A is a positive number')
+elif a == 0:
+    print("A is 0")
+else:
+    print('A is a negative number')
+```
+
+## Short hand
+
+```py
+code if condition else code # syntax
+
+a = 3
+print("A is 3") if a == 3 else print("A is not 3")
+```
+
+## Nested conditions
+
+```py
+# syntax
+if condition:
+    code
+    if condition:
+    code
+
+a = 0
+if a > 0:
+    if a % 2 == 0:
+        print('A is a positive and even integer')
+    else:
+        print('A is a positive number')
+elif a == 0:
+    print('A is zero')
+else:
+    print('A is a negative number')
+```
+
+## `if` condition and Logical operators
+
+* To avoid nested condition, we can write nested conditions by using logical operator `and`
+
+```py
+a = 0
+if a > 0 and a % 2 == 0:
+    print('A is a positive and even integer')
+elif a > 0 and a % 2 !=  0:
+    print('A is a positive integer')
+elif a == 0:
+    print('A is zero')
+else:
+    print('A is a negative number')
+```
+
+* Combine the `or`
+
+```py
+user = 'James'
+access_level = 3
+if user == 'admin' or access_level >= 4:
+        print('Access granted!')
+else:
+    print('Access denied!')
+```
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
