@@ -638,3 +638,110 @@ fruits.sort(reverse = True)
 print(fruits) # ['orange', 'mango', 'lemon', 'banana']
 ```
 
+# Day 6: Tuples
+
+Tuple is ordered and unchangeable, written with round brackets `()`.
+The methods `add()`, `insert()` and `remove()` can not be used with tuples.
+
+## Creation
+
+Use `()` or `tuple()` to create an empty tuple.
+
+```py
+empty_tuple = ()
+empty_tuple = tuple()
+
+tpl = ("a", "b", "c") # init with values
+```
+
+## Length
+
+Use built-in function `len()` to get the length of a tuple.
+
+## Accessing
+
+Similar to list, we can use positive or negative indexing.
+
+* `count()`: to count occurrence of a speficied item
+* `index()`: to find the index of a speficied item
+
+## Slicing
+
+Use a range of indexes (start and end) to slice out a sub-tuple.
+
+```py
+fruits = ('banana', 'orange', 'mango', 'lemon')
+fruits[1:3] # ('orange', 'mango'), right side index exclusive
+fruits[1:] # ('orange', 'mango', 'lemon')
+fruits[-3:-1] # ('orange', 'mango'), item at index at the right is not included.
+```
+
+## Change tuple to list
+
+Tuple is immutable, if we want to modify it, we should change it to a list and then change it back to tuple.
+
+```py
+fruits = ('banana', 'orange', 'mango', 'lemon')
+fruits = list(fruits)
+fruits[0] = 'apple'
+print(fruits)     # ['apple', 'orange', 'mango', 'lemon']
+fruits = tuple(fruits)
+print(fruits)     # ('apple', 'orange', 'mango', 'lemon')
+```
+
+## Check an item in tuple
+
+Use the `in` operator:
+
+```py
+"banana" in fruits
+```
+
+## Join tuples
+
+Use the `+` operator to join more multiple tuples:
+
+```py
+fruits = ('banana', 'orange', 'mango', 'lemon')
+vegetables = ('Tomato', 'Potato', 'Cabbage','Onion', 'Carrot')
+fruits_and_vegetables = fruits + vegetables
+```
+
+## Deleting tuples
+
+Impossible to remove a single item as tuple is immutable, but we can delete the whole tuple with `del`:
+
+```py
+del fruits_and_vegetables
+```
+
+# Built-in Function vs. Method
+
+* Built-in Function: A function that is provided by Python and can be used across different types of objects.
+For example, `len()` is a built-in function, it can be used with strings, tuples, dictionaries, and custom objects that implement the `__len__()` method.
+* Method: A function that is associated with an object and is called on that object.
+For example, `append()` is a method of the list object, we cannot do `list1.len()`
+
+# Summary for common operation for manipulating different data types
+
+Sure, here is the table with explanations added as the second column:
+
+| Operation            | Action                                    | List                        | Tuple                        | Set                              | Dictionary                                 |
+|:--------------------:|:-----------------------------------------:|:---------------------------:|:----------------------------:|:--------------------------------:|:------------------------------------------:|
+| **Declaration**      | To create each data type                  | `list1 = [1, 2, 3]`         | `tuple1 = (1, 2, 3)`         | `set1 = {1, 2, 3}`               | `dict1 = {'a': 1, 'b': 2, 'c': 3}`         |
+| **Accessing**        | To access elements                        | `list1[0]`                  | `tuple1[0]`                  | Not applicable (unordered)       | `dict1['a']`                               |
+| **Slicing**          | To get a subset of elements               | `list1[1:3]`                | `tuple1[1:3]`                | Not applicable                   | Not applicable                             |
+| **Modification**     | To change elements                        | `list1[0] = 10`             | Not allowed (immutable)      | `set1.add(4)`                    | `dict1['a'] = 10`                          |
+| **Appending**        | To add elements to the end                | `list1.append(4)`           | Not allowed (immutable)      | `set1.add(4)`                    | `dict1['d'] = 4`                           |
+| **Extending**        | To add multiple elements                  | `list1.extend([4, 5])`      | Not allowed (immutable)      | `set1.update([4, 5])`            | `dict1.update({'d': 4, 'e': 5})`           |
+| **Inserting**        | To add an element at a specific position  | `list1.insert(1, 5)`        | Not allowed (immutable)      | Not applicable (unordered)       | Not applicable                             |
+| **Removing**         | To remove a specific element              | `list1.remove(2)`           | Not allowed (immutable)      | `set1.remove(2)`                 | `del dict1['b']`                           |
+| **Popping**          | To remove and return the last element     | `list1.pop()`               | Not allowed (immutable)      | `set1.pop()`                     | `dict1.pop('a')`                           |
+| **Clearing**         | To remove all elements                    | `list1.clear()`             | Not allowed (immutable)      | `set1.clear()`                   | `dict1.clear()`                            |
+| **Finding Length**   | To get the number of elements             | `len(list1)`                | `len(tuple1)`                | `len(set1)`                      | `len(dict1)`                               |
+| **Membership Test**  | To check if an element exists             | `2 in list1`                | `2 in tuple1`                | `2 in set1`                      | `'a' in dict1`                             |
+| **Iteration**        | To loop through elements                  | `for x in list1: print(x)`  | `for x in tuple1: print(x)`  | `for x in set1: print(x)`        | `for key, value in dict1.items(): print(key, value)` |
+| **Sorting**          | To sort elements                          | `list1.sort()`              | Not allowed (immutable)      | `sorted(set1)` (returns a list)  | `sorted(dict1)` (returns sorted keys)      |
+| **Reversing**        | To reverse the order of elements          | `list1.reverse()`           | Not allowed (immutable)      | Not applicable                   | Not applicable                             |
+
+This table provides a detailed reference for common operations across lists, tuples, sets, and dictionaries in Python, including explanations of each operation.
