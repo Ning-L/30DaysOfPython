@@ -748,7 +748,8 @@ fruits.pop()  # removes a random item from the set
 removed_item = fruits.pop() # store the removed item in case we are interested in
 ```
 
-* Clearing items with `clear()` method.
+* Clearing items of a set with `clear()` method.
+* Deleting a set with the `del` statement.
 * Converting: list and set can be converted to each other, set will remove duplicates and order is lost.
 
 ```py
