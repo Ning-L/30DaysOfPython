@@ -775,6 +775,56 @@ st1.update(st2) # st2 contents are added to st1
 * Symmetric difference: `st1.symmetric_difference(st2)`, returns all items which exist only in one set.
 * Check if two sets do not have any common item: `st2.isdisjoint(st1) `
 
+# Day 8: Dictionaries
+
+A dictionary is a collection of unordered, modifiable(mutable) paired (key: value) data type.
+The key should be unique.
+
+* Creation with curly brackets `{}` or the built-in function `dict()`.
+```py
+empty_dict = {}
+# Dictionary with data values
+dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
+```
+* Getting length with the `len()` function, it checks the number of 'key: value' pairs in the dictionary. 
+* Accessing items via the key name: `dct["key1"]`. Can raise error if the key is not found.
+We can use `get()` method to access items: `dct.get("keyXX")`, if key does not exist, it will return None, a NoneType object data type.
+* Adding item should be a 'key: value' pair: `dct["key5"] = "value5"`
+* Modifying items via the key:  `dct["key5"] = "value555"`
+* Checking key with the `in` operator:  `"key5" in dct`
+* Removing key: value pairs with `pop(key)`, `popitem()` or `del`
+```py
+dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
+dct.pop('key1') # removes key1 item
+dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
+dct.popitem() # removes the last item (LIFO principle)
+del dct['key2'] # removes key2 item
+```
+P.S.: 
+
+- LIFO (Last-In, First-Out) order means that the most recently added element is the first one to be removed.
+This principle is applied in the `popitem()` method of dictionaries in Python
+- To determine the applicable data types for a given method, we can use:
+  - `help()`, provides documentation about modules, functions, classes, and methods, ex: `help(list.append)`, `help(dict.popitem)`, `help(str.split)`;
+  - `dir()`: lists all the attributes and methods of an object, ex: `dir(str)`
+  - Check the [Python 3 doc](https://docs.python.org/3/)
+  - Interactive inspection with the `__doc__` attribute, ex: `str.split.__doc__`, `list.append.__doc__`, etc.
+
+* Chanage dictionary to list of tuples with the `items()` method: `dct.items()`
+* Clearing a dictionary with the `clear()` method: `dct.clear()`
+* Deleting a dictionary with `del` statement
+* Copy a dictionary with `copy()` method
+* Getting dictionary keys/values as a list with the `keys()`/`values()` method: `dct.keys()`, `dct.values()`.
+We can do inverse, aka, build a dictionary based on two list: 
+```py
+my_keys = ['a', 'b', 'c']
+my_values = [1, 2, 3]
+# Create dictionary using zip() and dict()
+my_dict = dict(zip(my_keys, my_values))
+# Create dictionary using dictionary comprehension
+my_dict = {k: v for k, v in zip(my_keys, my_values)}
+## attention if lists with different length, zip() will stop pairing when the shortest list is exhausted
+```
 
 # Built-in Function vs. Method
 
