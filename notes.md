@@ -1127,3 +1127,9 @@ Sure, here is the table with explanations added as the second column:
 | **Reversing**        | To reverse the order of elements          | `list1.reverse()`           | Not allowed (immutable)      | Not applicable                   | Not applicable                             |
 
 This table provides a detailed reference for common operations across lists, tuples, sets, and dictionaries in Python, including explanations of each operation.
+
+## Cheatsheets Python 3
+
+https://perso.limsi.fr/pointal/_media/python:cours:mementopython3-english.pdf
+
+https://www.pythoncheatsheet.org/cheatsheet/built-in-functions
