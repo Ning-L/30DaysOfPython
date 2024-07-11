@@ -917,6 +917,186 @@ else:
     print('Access denied!')
 ```
 
+# Day 10: Loops
+
+## `while` loop
+
+Execute the code repeatedly while a given condition is satisfied,
+when the condition becomes false, the codes after the loop will be continued.
+```py
+count = 0
+while count < 5:
+    print(count)
+    count = count + 1
+#prints from 0 to 4
+```
+
+If we are interested to run block of code once the condition is no longer true, we can use else.
+```py
+count = 0
+while count < 5:
+    print(count)
+    count = count + 1
+else:
+    print(count) # execute this line when count is no longer <5
+```
+
+* Use `break` to get out of the loop.
+
+```py
+count = 0
+while count < 5:
+    print(count)
+    count = count + 1
+    if count == 3:
+        break
+# only prints 0, 1, 2, when arrives at 3 it stops.
+```
+
+* Use `continue` to skip the current iteration and continue with the next.
+```py
+count = 0
+while count < 5:
+    if count == 3:
+        count = count + 1
+        continue
+    print(count)
+    count = count + 1
+# only prints 0, 1, 2 and 4 (skips 3)
+```
+
+## `for` loop
+
+`for` kiio iterates over a sequence (such as a list, tuple, string or range) and
+executes a block of code for each item in the sequence.
+
+```py
+## with list
+numbers = [0, 1, 2, 3, 4, 5]
+for number in numbers: # number is temporary name to refer to the list's items, valid only inside this loop
+    print(number)      # the numbers will be printed line by line, from 0 to 5
+
+## with string
+language = 'Python'
+for letter in language:
+    print(letter)
+
+for i in range(len(language)):
+    print(language[i])
+
+## with tuple
+numbers = (0, 1, 2, 3, 4, 5)
+for number in numbers:
+    print(number)
+
+## with dictionary
+person = {
+    'first_name':'Asabeneh',
+    'last_name':'Yetayeh',
+    'age':250,
+    'country':'Finland',
+    'is_marred':True,
+    'skills':['JavaScript', 'React', 'Node', 'MongoDB', 'Python'],
+    'address':{
+        'street':'Space street',
+        'zipcode':'02210'
+    }
+}
+for key in person:
+    print(key)
+# gives the keys of the dictionary
+
+for key, value in person.items():
+    print(key, value)
+# this way we get both keys and values printed out
+
+## with set
+it_companies = {'Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon'}
+for company in it_companies:
+    print(company)
+```
+
+* Use `break` when we like to stop our loop before it is completed.
+```py
+numbers = (0,1,2,3,4,5)
+for number in numbers:
+    print(number)
+    if number == 3:
+        break
+# loop stop when number gets to 3
+```
+
+* Use `continue` when we like to skip some of the steps in the iteration of the loop.
+```py
+numbers = (0,1,2,3,4,5)
+for number in numbers:
+    print(number)
+    if number == 3:
+        continue
+    print('Next number should be ', number + 1) if number != 5 else print("loop's end") # for short hand conditions need both if and else statements
+print('outside the loop')
+
+# standard 
+for number in numbers:
+    print(number)
+    if number == 3:
+        continue
+    if number != 5: # will not be executed here when number is 3
+        print('Next number should be', number + 1)
+    else:
+        print("loop's end")
+print('outside the loop')
+
+## 0
+## Next number should be 1
+## 1
+## Next number should be 2
+## 2
+## Next number should be 3
+## 3
+## 4
+## Next number should be 5
+## 5
+## loop's end
+## outside the loop
+
+# with a range(start,end,step), by default step is 1, need at least the argument "end"
+for number in range(11):
+    print(number)   # prints 0 to 10, not including 11
+```
+
+### Nested `for` loop
+
+Write loops inside a loop.
+```py
+for key in person:
+    if key == 'skills':
+        for skill in person['skills']:
+            print(skill) # will print the skill one by one
+```
+
+### `for else`
+
+Use `else` to execute something message when the loop ends.
+
+```py
+for number in range(11):
+    print(number)   # prints 0 to 10, not including 11
+else:
+    print('The loop stops at', number)
+```
+
+### `pass`
+
+In python when statement is required (after semicolon),
+but we don't like to execute any code there, we can write the word `pass` to avoid errors.
+Also we can use it as a placeholder, for future statements.
+
+```py
+for number in range(6):
+    pass
+```
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
