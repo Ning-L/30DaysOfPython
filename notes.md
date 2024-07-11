@@ -1097,6 +1097,103 @@ for number in range(6):
     pass
 ```
 
+# Day 11: Functions
+
+## Defining a function
+
+Use the keyword `def` to declare a function, with or without parameters.
+```py
+# syntax
+# Declaring a function
+def function_name():
+    codes
+    codes
+# Calling a function
+function_name()
+
+def add_two_numbers ():
+    num_one = 2
+    num_two = 3
+    total = num_one + num_two
+    print(total)
+add_two_numbers()
+```
+
+## `return` in function
+Function can return values, if it does not have a `return` statement, the value of the function is `None`.
+We can return any kind of data types from a function.
+
+```py
+def add_two_numbers ():
+    num_one = 2
+    num_two = 3
+    total = num_one + num_two
+    return total
+print(add_two_numbers())
+```
+
+## Parameters
+We can pass different data types(number, string, boolean, list, tuple, dictionary or set) as a parameter in a function.
+
+```py
+def sum_of_numbers(n):
+    total = 0
+    for i in range(n+1):
+        total += i
+    print(total)
+print(sum_of_numbers(10)) # 55
+print(sum_of_numbers(100)) # 5050
+
+def calculate_age(current_year, birth_year):
+    age = current_year - birth_year
+    return age
+print('Age: ', calculate_age(current_year = 2021, birth_year = 1819))
+```
+
+We can pass default values to parameters.
+
+By adding `*` before the parameter name, we can create a function which takes arbitrary number of arguments.
+`*args` captures any additional positional arguments that are not explicitly defined.
+```py
+def generate_groups(team, leader, *args):
+    print(team)
+    print(f"Leader: {leader}")
+    print("Members:")
+    for i in args:
+        print(i)
+print(generate_groups('Team-1', 'Asabeneh', 'Brook', 'David', 'Eyob'))
+
+# another example
+def example_function(pos1, pos2, default1 = 10, *args, kwonly1, kwonly2 = 20, **kwargs):
+    print(f"pos1: {pos1}")
+    print(f"pos2: {pos2}")
+    print(f"default1: {default1}")
+    print(f"args: {args}")
+    print(f"kwonly1: {kwonly1}")
+    print(f"kwonly2: {kwonly2}")
+    print(f"kwargs: {kwargs}")
+
+# Calling the function with various arguments
+example_function(1, 2, 3, 4, 5, kwonly1 = 'kw1', extra = 'extra')
+# pos1: 1
+# pos2: 2
+# default1: 3
+# args: (4, 5)
+# kwonly1: kw1
+# kwonly2: 20
+# kwargs: {'extra': 'extra'}
+```
+
+We can also pass functions around as parameters, for ex:
+
+```py
+def square_number (n):
+    return n * n
+def do_something(f, x):
+    return f(x)
+print(do_something(square_number, 3)) # 27
+```
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
@@ -1133,3 +1230,7 @@ This table provides a detailed reference for common operations across lists, tup
 https://perso.limsi.fr/pointal/_media/python:cours:mementopython3-english.pdf
 
 https://www.pythoncheatsheet.org/cheatsheet/built-in-functions
+
+## PEP 8 - Style guide for Python code
+
+https://peps.python.org/pep-0008/
