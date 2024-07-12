@@ -1265,16 +1265,25 @@ print(math.ceil(9.81))   # 10, rounding to the highest
 print(math.log10(100))   # 2, logarithm with 10 as base
 ```
 
-Other useful function from `math`:
+It's possible to import multiple function at once:
 ```py
 from math import pi, sqrt, pow, floor, ceil, log10
 ```
 
-Use `*` to import all function from a module, ex:
+* `string` module:
 ```py
-from math import *
+import string
+print(string.ascii_letters) # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.digits)        # 0123456789
+print(string.punctuation)   # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 ```
 
+* `random` module: gives random number.
+```py
+from random import random, randint
+print(random())   # it doesn't take any arguments; it returns a value between 0 and 0.9999
+print(randint(5, 20)) # it returns a random integer number between [5, 20] inclusive
+```
 
 # Built-in Function vs. Method
 
