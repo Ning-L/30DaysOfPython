@@ -1194,6 +1194,88 @@ def do_something(f, x):
 print(do_something(square_number, 3)) # 27
 ```
 
+# Day 12: Modules
+
+A module is a file containing a set of codes or a set of functions which can be included to an application.
+A module could be a file containing a single variable, a function or a big code base.
+Modules allow you to organize your code into separate files for better manageability and reuse.
+
+Use the keyword `import` to import a module, need to prefix the module name before the function: `mymodule.generate_full_name()`
+Combining with the keyword `from`, we can import the functions differently, we can use directly the function: `generate_full_name()`
+We can use the keyword `as` to rename module's name while importing,
+we can use the rename function directly: `fullname()`
+
+* `os` module: to perform operating system tasks
+```py
+# import the module
+import os
+# Creating a directory
+os.mkdir('directory_name')
+# Changing the current directory
+os.chdir('path')
+# Getting current working directory
+os.getcwd()
+# Removing directory
+os.rmdir()
+```
+
+* `sys` module: manipulate different parts of the Python runtime environment
+```py
+## example script.py
+import sys
+#print(sys.argv[0], argv[1],sys.argv[2])  # this line would print out: filename argument1 argument2
+print('Welcome {}. Enjoy  {} challenge!'.format(sys.argv[1], sys.argv[2]))
+```
+
+```bash
+python script.py Asabeneh 30DaysOfPython
+```
+
+```py
+## other useful sys commands:
+# to exit sys
+sys.exit()
+# To know the largest integer variable it takes
+sys.maxsize
+# To know environment path
+sys.path
+# To know the version of python you are using
+sys.version
+```
+
+* `statistics` module: provides functions for mathematical statistics of numeric data.
+```py
+from statistics import * # importing all the statistics modules
+ages = [20, 20, 4, 24, 25, 22, 26, 20, 23, 22, 26]
+print(mean(ages))       # ~22.9
+print(median(ages))     # 23
+print(mode(ages))       # 20
+print(stdev(ages))      # ~2.3
+```
+
+* `math` module: provides many mathematical operations and constants.
+
+```py
+import math
+print(math.pi)           # 3.141592653589793, pi constant
+print(math.sqrt(2))      # 1.4142135623730951, square root
+print(math.pow(2, 3))    # 8.0, exponential function
+print(math.floor(9.81))  # 9, rounding to the lowest
+print(math.ceil(9.81))   # 10, rounding to the highest
+print(math.log10(100))   # 2, logarithm with 10 as base
+```
+
+Other useful function from `math`:
+```py
+from math import pi, sqrt, pow, floor, ceil, log10
+```
+
+Use `*` to import all function from a module, ex:
+```py
+from math import *
+```
+
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
