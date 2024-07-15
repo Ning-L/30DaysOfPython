@@ -1380,7 +1380,237 @@ cube = power(2)(3)   # function power now need 2 arguments to run, in separate r
 print(cube)          # 8
 ```
 
+# Day 14: Higer oder functions
 
+In Python, following operations are allowed:
+
+* A function can take one or more functions as parameters
+* A function can be returned as a result of another function
+* A function can be modified
+* A function can be assigned to a variable
+
+## Function as a parameters
+
+```py
+def sum_numbers(nums):  # normal function
+    return sum(nums)    # a sad function abusing the built-in sum function :<
+
+def higher_order_function(f, lst):  # function as a parameter
+    summation = f(lst)
+    return summation
+result = higher_order_function(sum_numbers, [1, 2, 3, 4, 5])
+print(result)       # 15
+```
+
+## Function as a returned value
+
+```py
+def square(x):          # a square function
+    return x ** 2
+
+def cube(x):            # a cube function
+    return x ** 3
+
+def absolute(x):        # an absolute value function
+    if x >= 0:
+        return x
+    else:
+        return -(x)
+
+def higher_order_function(type): # a higher order function returning a function
+    if type == 'square':
+        return square
+    elif type == 'cube':
+        return cube
+    elif type == 'absolute':
+        return absolute
+
+result = higher_order_function('square')
+print(result(3))       # 9
+result = higher_order_function('cube')
+print(result(3))       # 27
+result = higher_order_function('absolute')
+print(result(-3))      # 3
+```
+
+## Python closures
+
+**/!\ not very clear, to review this notion**
+
+Python allows a nested function to access the outer scope of the enclosing function. 
+
+```py
+def outer_function(x):
+    def inner_function(y):
+        return x + y  # `x` is captured from the outer function
+    return inner_function
+
+# Create a closure
+closure = outer_function(10)
+
+# When outer_function(10) is called, it returns the inner_function but retains the value of x (which is 10).
+
+# Call the closure
+result = closure(5)  # This adds 10 (from outer) and 5 (from inner)
+# when closure(5) is called, it uses the captured value of x to compute 10 + 5. (y is 5)
+print(result)  # Output: 15
+
+```
+
+## Python decorators
+
+**/!\ not clear, to review this notion, why use it?**
+
+A decorator is a design pattern in Python that allows a user to add new functionality to an existing object without modifying its structure.
+Decorators are usually called before the definition of a function you want to decorate.
+
+```py
+# Normal function
+def greeting():
+    return 'Welcome to Python'
+def uppercase_decorator(function):
+    def wrapper():
+        func = function()
+        make_uppercase = func.upper()
+        return make_uppercase
+    return wrapper
+g = uppercase_decorator(greeting)
+print(g())          # WELCOME TO PYTHON
+
+## Let us implement the example above with a decorator
+
+'''This decorator function is a higher order function
+that takes a function as a parameter'''
+def uppercase_decorator(function):
+    def wrapper():
+        func = function()
+        make_uppercase = func.upper()
+        return make_uppercase
+    return wrapper
+@uppercase_decorator # applying the decorator
+def greeting():
+    return 'Welcome to Python'
+print(greeting())   # WELCOME TO PYTHON
+
+# another example
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()  # Call the original function
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+# Call the decorated function
+say_hello()
+"""
+Something is happening before the function is called.
+Hello!
+Something is happening after the function is called.
+"""
+```
+
+Decorator can take paramters:
+```py
+def decorator_with_parameters(function):
+    def wrapper_accepting_parameters(para1, para2, para3):
+        function(para1, para2, para3)
+        print("I live in {}".format(para3))
+    return wrapper_accepting_parameters
+
+@decorator_with_parameters
+def print_full_name(first_name, last_name, country):
+    print("I am {} {}. I love to teach.".format(
+        first_name, last_name, country))
+
+print_full_name("Asabeneh", "Yetayeh", 'Finland')
+```
+
+## Built-in higher order functions
+
+Some of the built-in higher order functions that we cover in this part are map(), filter, and reduce.
+Lambda function can be passed as a parameter.
+
+* `map()`
+
+```py
+# syntax
+map(function, iterable)
+
+# examples
+numbers = [1, 2, 3, 4, 5] # iterable
+def square(x):
+    return x ** 2
+numbers_squared = map(square, numbers)
+print(list(numbers_squared))    # [1, 4, 9, 16, 25]
+
+numbers_squared = map(lambda x : x ** 2, numbers) # apply it with a lambda function
+print(list(numbers_squared))    # [1, 4, 9, 16, 25]
+
+
+numbers_str = ['1', '2', '3', '4', '5']  # iterable
+numbers_int = map(int, numbers_str)
+print(list(numbers_int))    # [1, 2, 3, 4, 5]
+
+
+names = ['Asabeneh', 'Lidiya', 'Ermias', 'Abraham']  # iterable
+def change_to_upper(name):
+    return name.upper()
+
+names_upper_cased = map(change_to_upper, names)
+print(list(names_upper_cased))    # ['ASABENEH', 'LIDIYA', 'ERMIAS', 'ABRAHAM']
+
+# apply with a lambda function
+names_upper_cased = map(lambda name: name.upper(), names)
+print(list(names_upper_cased))    # ['ASABENEH', 'LIDIYA', 'ERMIAS', 'ABRAHAM']
+```
+
+* `filter()`
+
+The filter() function calls the specified function which returns boolean
+for each item of the specified iterable (list). It filters the items that satisfy the filtering criteria.
+
+```py
+# syntax
+filter(function, iterable)
+
+# example
+# Lets filter only even nubers
+numbers = [1, 2, 3, 4, 5]  # iterable
+
+def is_even(num):
+    if num % 2 == 0:
+        return True
+    return False
+
+even_numbers = filter(is_even, numbers)
+print(list(even_numbers))       # [2, 4]
+
+list(map(is_even, numbers))     # [False, True, False, True, False]
+
+```
+
+* `reduce()`
+
+The reduce() function is defined in the functools module and we should import it from this module.
+Like map and filter it takes two parameters, a function and an iterable.
+However, it does not return another iterable, instead it returns a single value.
+
+```py
+numbers_str = ['1', '2', '3', '4', '5']  # iterable
+def add_two_nums(x, y):
+    return int(x) + int(y)
+
+total = reduce(add_two_nums, numbers_str) 
+'''
+The reduce function applies `add_two_nums` cumulatively to the items of `numbers_str`,
+from left to right, so as to reduce the iterable to a single value.
+'''
+print(total)    # 15
+```
 
 
 # Built-in Function vs. Method
