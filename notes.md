@@ -1285,6 +1285,104 @@ print(random())   # it doesn't take any arguments; it returns a value between 0 
 print(randint(5, 20)) # it returns a random integer number between [5, 20] inclusive
 ```
 
+# Day 13: List comprehension & lambda function
+
+## List comprehension
+
+List comprehension is a compact way of creating a list from a sequence.
+It's a short way to create new list and faster than processing a list using the `for` loop.
+
+```py
+## syntax
+[i for i in iterable if expression]
+
+# Examples
+## string to list
+language = 'Python'
+lst = list(language) # use list()
+[i for i in language] # use list comprehension
+
+## generate a list of numbers
+[i for i in range(10)] # generate numbers from 0 to 9
+
+## do math operation during iteration
+[i * 2 for i in range(5)] # [0, 2, 4, 6, 8]
+
+## generate a list of tuple
+[(i, i * i) for i in range(5)] # [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16)]
+
+## combine with `if`
+[i for i in range(21) if i % 2 == 0] # even number in range 0 to 21
+
+nbs = [-8, -7, -3, -1, 0, 1, 3, 4, 5, 7, 6, 8, 10]
+[i for i in nbs if i % 2 == 0 and i > 0] # filter out positive even nb from a list, [4, 6, 8, 10]
+
+## to flatten a list of lists
+list_of_lists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+[number for row in list_of_lists for number in row] # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+### outer loop `for row in list_of_lists`, which sublist is being processed
+### inner loop `for number in row`, extract each item from that sublist
+### output: number
+# The outer loop starts and picks the first row. (row 1 [1,2,3], row 2 [4,5,6], row 3 [7,8,9])
+# The inner loop executes for every number in that row. for row 1, the 1st number is 1, 2nd is 2, 3rd is 3
+# After the inner loop completes for the first row, the outer loop moves to the next row.
+# This process repeats until all rows have been processed.
+
+# using loop will be:
+output = []
+for row in list_of_lists:
+    for number in row:
+        output.append(number)
+
+```
+
+## Lambda function
+
+Lambda function is a small anonymous function without a name.
+It can take any number of arguments, but **can only have one expression**. 
+We need it when we want to write an anonymous function inside another function.
+
+Use the keyword `lambda` to create it.
+Lambda function **does not use return** but it explicitly returns the expression.
+
+```py
+# syntax
+x = lambda param1, param2, param3: param1 + param2 + param2
+
+# Examples
+## Named function
+def add_two_nums(a, b):
+    return a + b
+
+print(add_two_nums(2, 3))     # 5
+## Lets change the above function to a lambda function
+add_two_nums = lambda a, b: a + b
+print(add_two_nums(2,3))    # 5
+
+## Self invoking lambda function
+(lambda a, b: a + b)(2,3) # 5 - need to encapsulate it in print() to see the result in the console
+
+square = lambda x : x ** 2
+print(square(3))    # 9
+cube = lambda x : x ** 3
+print(cube(3))    # 27
+
+## Multiple variables
+multiple_variable = lambda a, b, c: a ** 2 - 3 * b + 4 * c
+print(multiple_variable(5, 5, 3)) # 22
+
+
+# lambda functiton inside another function
+def power(x):
+    return lambda n : x ** n
+
+cube = power(2)(3)   # function power now need 2 arguments to run, in separate rounded brackets
+print(cube)          # 8
+```
+
+
+
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
