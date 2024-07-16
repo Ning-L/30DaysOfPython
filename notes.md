@@ -14,10 +14,10 @@ Difference between `list`, `set` and `tuple`:
 | **Use Cases**   | Mutable sequences (tasks list)  | Uniqueness checking (IDs)      | Immutable sequences (coords)     |
 
 Typical use cases for each data structure:
-  - **List**: Useful for managing ordered collections where elements can be modified, such as to-do lists.
-  - **Set**: Ideal for ensuring uniqueness in collections, like managing unique user IDs or email addresses.
-  - **Tuple**: Suitable for storing constant data that should not change after creation, such as geographic coordinates or configuration settings.
 
+- **List**: Useful for managing ordered collections where elements can be modified, such as to-do lists.
+- **Set**: Ideal for ensuring uniqueness in collections, like managing unique user IDs or email addresses.
+- **Tuple**: Suitable for storing constant data that should not change after creation, such as geographic coordinates or configuration settings.
 
 # Day 2
 
@@ -48,7 +48,6 @@ The corresponding R functions for the the most commonly used Python built-in fun
 
 - **Dictionary Equivalent in R**: R doesn't have a direct equivalent of Python's dictionary. Instead, named lists or environments are often used for similar purposes.
 
-
 The `zip()` is used to combine multiple iterable objects (such as lists, tuples, etc.) into tuples.
 It creates an iterator that aggregates elements from each of the iterables.
 The returned tuples contain elements from the input iterables that are at the same position.
@@ -61,6 +60,7 @@ print(list(zipped)) # output: [(1, 4), (2, 5), (3, 6)]
 ```
 
 The `zip()` function stops creating tuples when the shortest input iterable is exhausted.
+
 ```py
 list1 = [1, 2, 3, 4]
 list2 = ['a', 'b']
@@ -69,6 +69,7 @@ print(list(zipped2))  # output: [(1, 'a'), (2, 'b')], stops at the shortest iter
 ```
 
 `zip()` in conjunction with the * operator can be used to unzip a list.
+
 ```py
 x2, y2 = zip(*zipped)
 x == list(x2) and y == list(y2)
@@ -78,12 +79,15 @@ x == list(x2) and y == list(y2)
 
 - Naming convention is snake_case.
 - The assignment operator is `=`.
-- Can declare multiple variables in one line: 
+- Can declare multiple variables in one line:
+
 ```py
 first_name, last_name, age, city, is_married = "Dupont", "Grand", 30, "Paris", False
 print("Name:", first_name, last_name, ",", age, "yrs old, married:",  is_married)
 ```
+
 - Can take user input and assign to a variable:
+
 ```py
 age = input("How old are you: ")
 print(age)
@@ -94,6 +98,7 @@ print(age)
 - When we do arithmetic operations string numbers should be first converted to int or float, otherwise error.
 - When we concatenate a number with a string, the number should be first converted to a string, otherwise error.
 - String can be converted into a list:
+
 ```py
 list("ABCSOIFE") # output: ['A', 'B', 'C', 'S', 'O', 'I', 'F', 'E']
 ```
@@ -172,6 +177,7 @@ Python uses also the following keywords for comparison:
 ## Creation
 
 Multiline string can be created using triple double quote (""") or simple quote (''').
+
 ```py
 long_string = """This is a very long string and I need to put it into
 multiple line to finish the sentence otherwise
@@ -182,6 +188,7 @@ my eyes will be tired after read it haha.
 ## Concatenation
 
 Concatenate strings can be achieved by using the `+`.
+
 ```py
 first_name = "Dupont"
 middle_name = "Mickel"
@@ -267,6 +274,7 @@ language[3:]
 We can reverse a string as `language[::-1]`.
 
 We can also skip characters while slicing, for example:
+
 ```py
 letters = "abcdefghi"
 letters[0:8:3] # slice from idx 0 to 9 and skip every 3 letters
@@ -325,7 +333,6 @@ print(example.rindex(sub_string))  # Output: 7 (last occurrence)
 
 P.S.: there's an error in the doc of day 4 [L376](https://github.com/Asabeneh/30-Days-Of-Python/blob/2f3a64c82fdca90f040f676d17aa6b0e430228ec/04_Day_Strings/04_strings.md?plain=1#L376),
 the `print(challenge.rindex(sub_string))` should be 7 instead of 8.
-
 
 ```py
 ## isalnum(), checks alphanumeric character
@@ -628,7 +635,7 @@ Use the method `reverse()`, list1.reverse()
 
 Use the method `sort(reverse=False)` or the built-in function `sorted(reverse=False)`.
 By default, both ways order the list in ascending order,
-the method `sort()` will modify the original list. 
+the method `sort()` will modify the original list.
 
 ```py
 fruits = ['banana', 'orange', 'mango', 'lemon']
@@ -717,7 +724,7 @@ del fruits_and_vegetables
 
 # Day 7: Sets
 
-Set is unordered and un-indexed, set is used to store unique items, 
+Set is unordered and un-indexed, set is used to store unique items,
 and it is possible to find the union, intersection, difference, symmetric difference, subset, super set and disjoint set among sets.
 
 * Creation with the built-in function `set()` to create an empty set, and `{}` to initiate a set with values:
@@ -781,18 +788,21 @@ A dictionary is a collection of unordered, modifiable(mutable) paired (key: valu
 The key should be unique.
 
 * Creation with curly brackets `{}` or the built-in function `dict()`.
+
 ```py
 empty_dict = {}
 # Dictionary with data values
 dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
 ```
-* Getting length with the `len()` function, it checks the number of 'key: value' pairs in the dictionary. 
+
+* Getting length with the `len()` function, it checks the number of 'key: value' pairs in the dictionary.
 * Accessing items via the key name: `dct["key1"]`. Can raise error if the key is not found.
 We can use `get()` method to access items: `dct.get("keyXX")`, if key does not exist, it will return None, a NoneType object data type.
 * Adding item should be a 'key: value' pair: `dct["key5"] = "value5"`
 * Modifying items via the key:  `dct["key5"] = "value555"`
 * Checking key with the `in` operator:  `"key5" in dct`
 * Removing key: value pairs with `pop(key)`, `popitem()` or `del`
+
 ```py
 dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
 dct.pop('key1') # removes key1 item
@@ -800,7 +810,8 @@ dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
 dct.popitem() # removes the last item (LIFO principle)
 del dct['key2'] # removes key2 item
 ```
-P.S.: 
+
+P.S.:
 
 - LIFO (Last-In, First-Out) order means that the most recently added element is the first one to be removed.
 This principle is applied in the `popitem()` method of dictionaries in Python
@@ -815,7 +826,8 @@ This principle is applied in the `popitem()` method of dictionaries in Python
 * Deleting a dictionary with `del` statement
 * Copy a dictionary with `copy()` method
 * Getting dictionary keys/values as a list with the `keys()`/`values()` method: `dct.keys()`, `dct.values()`.
-We can do inverse, aka, build a dictionary based on two list: 
+We can do inverse, aka, build a dictionary based on two list:
+
 ```py
 my_keys = ['a', 'b', 'c']
 my_values = [1, 2, 3]
@@ -850,6 +862,7 @@ else:
 ## `if elif else`
 
 For more than two conditions, we can combine with `elif`.
+
 ```py
 a = 3
 if a > 0:
@@ -923,6 +936,7 @@ else:
 
 Execute the code repeatedly while a given condition is satisfied,
 when the condition becomes false, the codes after the loop will be continued.
+
 ```py
 count = 0
 while count < 5:
@@ -932,6 +946,7 @@ while count < 5:
 ```
 
 If we are interested to run block of code once the condition is no longer true, we can use else.
+
 ```py
 count = 0
 while count < 5:
@@ -954,6 +969,7 @@ while count < 5:
 ```
 
 * Use `continue` to skip the current iteration and continue with the next.
+
 ```py
 count = 0
 while count < 5:
@@ -1017,6 +1033,7 @@ for company in it_companies:
 ```
 
 * Use `break` when we like to stop our loop before it is completed.
+
 ```py
 numbers = (0,1,2,3,4,5)
 for number in numbers:
@@ -1027,6 +1044,7 @@ for number in numbers:
 ```
 
 * Use `continue` when we like to skip some of the steps in the iteration of the loop.
+
 ```py
 numbers = (0,1,2,3,4,5)
 for number in numbers:
@@ -1068,6 +1086,7 @@ for number in range(11):
 ### Nested `for` loop
 
 Write loops inside a loop.
+
 ```py
 for key in person:
     if key == 'skills':
@@ -1102,6 +1121,7 @@ for number in range(6):
 ## Defining a function
 
 Use the keyword `def` to declare a function, with or without parameters.
+
 ```py
 # syntax
 # Declaring a function
@@ -1120,6 +1140,7 @@ add_two_numbers()
 ```
 
 ## `return` in function
+
 Function can return values, if it does not have a `return` statement, the value of the function is `None`.
 We can return any kind of data types from a function.
 
@@ -1133,6 +1154,7 @@ print(add_two_numbers())
 ```
 
 ## Parameters
+
 We can pass different data types(number, string, boolean, list, tuple, dictionary or set) as a parameter in a function.
 
 ```py
@@ -1154,6 +1176,7 @@ We can pass default values to parameters.
 
 By adding `*` before the parameter name, we can create a function which takes arbitrary number of arguments.
 `*args` captures any additional positional arguments that are not explicitly defined.
+
 ```py
 def generate_groups(team, leader, *args):
     print(team)
@@ -1206,6 +1229,7 @@ We can use the keyword `as` to rename module's name while importing,
 we can use the rename function directly: `fullname()`
 
 * `os` module: to perform operating system tasks
+
 ```py
 # import the module
 import os
@@ -1220,6 +1244,7 @@ os.rmdir()
 ```
 
 * `sys` module: manipulate different parts of the Python runtime environment
+
 ```py
 ## example script.py
 import sys
@@ -1244,6 +1269,7 @@ sys.version
 ```
 
 * `statistics` module: provides functions for mathematical statistics of numeric data.
+
 ```py
 from statistics import * # importing all the statistics modules
 ages = [20, 20, 4, 24, 25, 22, 26, 20, 23, 22, 26]
@@ -1266,11 +1292,13 @@ print(math.log10(100))   # 2, logarithm with 10 as base
 ```
 
 It's possible to import multiple function at once:
+
 ```py
 from math import pi, sqrt, pow, floor, ceil, log10
 ```
 
 * `string` module:
+
 ```py
 import string
 print(string.ascii_letters) # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
@@ -1279,6 +1307,7 @@ print(string.punctuation)   # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 ```
 
 * `random` module: gives random number.
+
 ```py
 from random import random, randint
 print(random())   # it doesn't take any arguments; it returns a value between 0 and 0.9999
@@ -1339,7 +1368,7 @@ for row in list_of_lists:
 ## Lambda function
 
 Lambda function is a small anonymous function without a name.
-It can take any number of arguments, but **can only have one expression**. 
+It can take any number of arguments, but **can only have one expression**.
 We need it when we want to write an anonymous function inside another function.
 
 Use the keyword `lambda` to create it.
@@ -1393,16 +1422,16 @@ print(squared_dict) # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
 even_squared_dict = {num: num**2 for num in numbers if num % 2 == 0}
 print(even_squared_dict) # {2: 4, 4: 16}
-
 ```
+
 # Day 14: Higer oder functions
 
 In Python, following operations are allowed:
 
-* A function can take one or more functions as parameters
-* A function can be returned as a result of another function
-* A function can be modified
-* A function can be assigned to a variable
+- A function can take one or more functions as parameters
+- A function can be returned as a result of another function
+- A function can be modified
+- A function can be assigned to a variable
 
 ## Function as a parameters
 
@@ -1452,7 +1481,7 @@ print(result(-3))      # 3
 
 **/!\ not very clear, to review this notion**
 
-Python allows a nested function to access the outer scope of the enclosing function. 
+Python allows a nested function to access the outer scope of the enclosing function.
 
 ```py
 def outer_function(x):
@@ -1529,6 +1558,7 @@ Something is happening after the function is called.
 ```
 
 Decorator can take paramters:
+
 ```py
 def decorator_with_parameters(function):
     def wrapper_accepting_parameters(para1, para2, para3):
@@ -1627,67 +1657,65 @@ from left to right, so as to reduce the iterable to a single value.
 print(total)    # 15
 ```
 
-
 # Day 15: Error types
 
-* **SyntaxError** indicates that there is something wrong with the structure of your code:
-    - missing colons `:`,
-    - unmatched parentheses/brackets/quotes,
-    - inproper indentation,
-    - using reserved keywords (`def = 2`),
-    - invalide characters (`print(3 @ 2)`), etc.
+- **SyntaxError** indicates that there is something wrong with the structure of your code:
+  - missing colons `:`,
+  - unmatched parentheses/brackets/quotes,
+  - inproper indentation,
+  - using reserved keywords (`def = 2`),
+  - invalide characters (`print(3 @ 2)`), etc.
 
-* **NameError** indicates that Python can't find a variable or function with the name you provided: 
-    - using and undefined variable,
-    - misspelling a variable name,
-    - using a function before defining it,
-    - incorrect scope (accessing a variable that is not in the global scope),
-    - using non-existent imports, etc.
+- **NameError** indicates that Python can't find a variable or function with the name you provided:
+  - using and undefined variable,
+  - misspelling a variable name,
+  - using a function before defining it,
+  - incorrect scope (accessing a variable that is not in the global scope),
+  - using non-existent imports, etc.
 
-* **IndexError** indicates that you are trying to access an invalid index in a sequence:
-    - accessing an index that is out of the range,
-    - empty list access, etc.
+- **IndexError** indicates that you are trying to access an invalid index in a sequence:
+  - accessing an index that is out of the range,
+  - empty list access, etc.
 
-* **ModuleNotFoundError** indicates that Python cannot locate the specified module:
-    - incorrect module name,
-    - module not installed,
-    - using wrong Python environment,
-    - module located in a different directory (without properly setting the Python path),
-    - circular imports (when two or more modules attempt to import each other directly or indirectly, creating a loop in the import structure.), etc.
+- **ModuleNotFoundError** indicates that Python cannot locate the specified module:
+  - incorrect module name,
+  - module not installed,
+  - using wrong Python environment,
+  - module located in a different directory (without properly setting the Python path),
+  - circular imports (when two or more modules attempt to import each other directly or indirectly, creating a loop in the import structure.), etc.
 
-* **AttributeError** indicates that you're trying to access an attribute or method that does not exist on the object you're working with: 
-    - accessing a non-existent attribute,
-    - calling a non-existent method,
-    - misspelling the attribute name,
-    - accessing an attribute from a non-object (like a function or a module),
-    - accessing attributes in inherited classes, etc.
+- **AttributeError** indicates that you're trying to access an attribute or method that does not exist on the object you're working with:
+  - accessing a non-existent attribute,
+  - calling a non-existent method,
+  - misspelling the attribute name,
+  - accessing an attribute from a non-object (like a function or a module),
+  - accessing attributes in inherited classes, etc.
 
-* **KeyError** indicates that you're trying to access a key that does not exist in a dictionary:
-    - accessing a non-existent/non-defined key,
-    - accessing keys after deletion,
-    - typos (case sensitive), etc.
+- **KeyError** indicates that you're trying to access a key that does not exist in a dictionary:
+  - accessing a non-existent/non-defined key,
+  - accessing keys after deletion,
+  - typos (case sensitive), etc.
 
-* **TypeError** indicates that an operation was applied to an object of an inappropriate type:
-    - unsupported operations (`'2' + 4`),
-    - incorrect argument type (like expected number but input string),
-    - calling an non-callable object (like string or number),
-    - indexing with a non-integer type (`lst['1']`),
-    - providing incorrect number of argument to a function, etc.
+- **TypeError** indicates that an operation was applied to an object of an inappropriate type:
+  - unsupported operations (`'2' + 4`),
+  - incorrect argument type (like expected number but input string),
+  - calling an non-callable object (like string or number),
+  - indexing with a non-integer type (`lst['1']`),
+  - providing incorrect number of argument to a function, etc.
 
-* **ImportError**  indicates that Python cannot find the specified module or object during the import process:
-    - module not found,
-    - incorrect module path,
-    - circular import,
-    - inporting non-existent function, etc.
-    
-* **ValueError** indicates that a function received an argument of the right type but an inappropriate value:
-    - incorrect value for a function (like `int('12a')`),
-    - out of range (like `import math; math.sqrt(-1)`),
-    - invalide data conversion (like `float('a')`),
-    - wrong shape or size (value that does not fit the expected shape or size for data structure, like lenght of 2 but operate 3 times, unpacking values for wrong nb of variables), etc.
+- **ImportError**  indicates that Python cannot find the specified module or object during the import process:
+  - module not found,
+  - incorrect module path,
+  - circular import,
+  - inporting non-existent function, etc.
 
-* **ZeroDivisionError** indicates you are dividing a number by zero.
+- **ValueError** indicates that a function received an argument of the right type but an inappropriate value:
+  - incorrect value for a function (like `int('12a')`),
+  - out of range (like `import math; math.sqrt(-1)`),
+  - invalide data conversion (like `float('a')`),
+  - wrong shape or size (value that does not fit the expected shape or size for data structure, like lenght of 2 but operate 3 times, unpacking values for wrong nb of variables), etc.
 
+- **ZeroDivisionError** indicates you are dividing a number by zero.
 
 # Day 16: Date time
 
@@ -1734,6 +1762,7 @@ print(f'{day}/{month}/{year}, {hour}:{minute}, {a%}')  # 1/1/2020, 0:0
 ```
 
 Here's the cheatsheet for Python strftime: https://strftime.org/
+
 ```py
 from datetime import datetime
 # current date and time
@@ -1817,6 +1846,7 @@ print('Time left for new year:', diff)
 ```
 
 * using `timedelta`
+
 ```py
 from datetime import timedelta
 t1 = timedelta(weeks=12, days=10, hours=4, seconds=20)
@@ -1889,7 +1919,6 @@ Sure, here is the table with explanations added as the second column:
 | **Comprehension** | Syntax | `[expression for item in iterable if condition]` | `tuple(expression for item in iterable if condition)` | `{expression for item in iterable if condition}` | `{key_expression: value_expression for item in iterable if condition}` |
 | **Comprehension example** | concise ways to create collections by iterating over iterable objects and optionally filtering elements | `squared_numbers = [x**2 for x in range(10) if x % 2 == 0]` | `squared_tuple = tuple(x**2 for x in range(10))` | `squared_set = {x**2 for x in range(10)}` | `squared_dict = {x: x**2 for x in range(10)}` |
 
-
 ## Cheatsheets Python 3
 
 https://perso.limsi.fr/pointal/_media/python:cours:mementopython3-english.pdf
@@ -1898,4 +1927,4 @@ https://www.pythoncheatsheet.org/cheatsheet/built-in-functions
 
 ## PEP 8 - Style guide for Python code
 
-https://peps.python.org/pep-0008/
+https://peps.python.org/pep-0008
