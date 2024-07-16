@@ -1628,6 +1628,67 @@ print(total)    # 15
 ```
 
 
+# Day 15: Error types
+
+* **SyntaxError** indicates that there is something wrong with the structure of your code:
+    - missing colons `:`,
+    - unmatched parentheses/brackets/quotes,
+    - inproper indentation,
+    - using reserved keywords (`def = 2`),
+    - invalide characters (`print(3 @ 2)`), etc.
+
+* **NameError** indicates that Python can't find a variable or function with the name you provided: 
+    - using and undefined variable,
+    - misspelling a variable name,
+    - using a function before defining it,
+    - incorrect scope (accessing a variable that is not in the global scope),
+    - using non-existent imports, etc.
+
+* **IndexError** indicates that you are trying to access an invalid index in a sequence:
+    - accessing an index that is out of the range,
+    - empty list access, etc.
+
+* **ModuleNotFoundError** indicates that Python cannot locate the specified module:
+    - incorrect module name,
+    - module not installed,
+    - using wrong Python environment,
+    - module located in a different directory (without properly setting the Python path),
+    - circular imports (when two or more modules attempt to import each other directly or indirectly, creating a loop in the import structure.), etc.
+
+* **AttributeError** indicates that you're trying to access an attribute or method that does not exist on the object you're working with: 
+    - accessing a non-existent attribute,
+    - calling a non-existent method,
+    - misspelling the attribute name,
+    - accessing an attribute from a non-object (like a function or a module),
+    - accessing attributes in inherited classes, etc.
+
+* **KeyError** indicates that you're trying to access a key that does not exist in a dictionary:
+    - accessing a non-existent/non-defined key,
+    - accessing keys after deletion,
+    - typos (case sensitive), etc.
+
+* **TypeError** indicates that an operation was applied to an object of an inappropriate type:
+    - unsupported operations (`'2' + 4`),
+    - incorrect argument type (like expected number but input string),
+    - calling an non-callable object (like string or number),
+    - indexing with a non-integer type (`lst['1']`),
+    - providing incorrect number of argument to a function, etc.
+
+* **ImportError**  indicates that Python cannot find the specified module or object during the import process:
+    - module not found,
+    - incorrect module path,
+    - circular import,
+    - inporting non-existent function, etc.
+    
+* **ValueError** indicates that a function received an argument of the right type but an inappropriate value:
+    - incorrect value for a function (like `int('12a')`),
+    - out of range (like `import math; math.sqrt(-1)`),
+    - invalide data conversion (like `float('a')`),
+    - wrong shape or size (value that does not fit the expected shape or size for data structure, like lenght of 2 but operate 3 times, unpacking values for wrong nb of variables), etc.
+
+* **ZeroDivisionError** indicates you are dividing a number by zero.
+
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
