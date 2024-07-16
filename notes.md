@@ -1656,8 +1656,9 @@ Sure, here is the table with explanations added as the second column:
 | **Iteration**        | To loop through elements                  | `for x in list1: print(x)`  | `for x in tuple1: print(x)`  | `for x in set1: print(x)`        | `for key, value in dict1.items(): print(key, value)` |
 | **Sorting**          | To sort elements                          | `list1.sort()`              | Not allowed (immutable)      | `sorted(set1)` (returns a list)  | `sorted(dict1)` (returns sorted keys)      |
 | **Reversing**        | To reverse the order of elements          | `list1.reverse()`           | Not allowed (immutable)      | Not applicable                   | Not applicable                             |
+| **Comprehension** | Syntax | `[expression for item in iterable if condition]` | `tuple(expression for item in iterable if condition)` | `{expression for item in iterable if condition}` | `{key_expression: value_expression for item in iterable if condition}` |
+| **Comprehension example** | concise ways to create collections by iterating over iterable objects and optionally filtering elements | `squared_numbers = [x**2 for x in range(10) if x % 2 == 0]` | `squared_tuple = tuple(x**2 for x in range(10))` | `squared_set = {x**2 for x in range(10)}` | `squared_dict = {x: x**2 for x in range(10)}` |
 
-This table provides a detailed reference for common operations across lists, tuples, sets, and dictionaries in Python, including explanations of each operation.
 
 ## Cheatsheets Python 3
 
