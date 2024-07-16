@@ -1689,6 +1689,39 @@ print(total)    # 15
 * **ZeroDivisionError** indicates you are dividing a number by zero.
 
 
+# Attributes vs. Methods
+
+In Python, attributes and methods are both associated with objects, but they serve different purposes.
+
+**Attributes** are *variables* that belong to an object. They hold data or state information about the object.
+
+```py
+class Car:
+    def __init__(self, make, model, color):
+        self.make = make     # Attributes
+        self.model = model
+        self.color = color
+
+my_car = Car('Toyota', 'Camry', 'blue')
+print(my_car.color)  # Accessing an attribute
+```
+
+**Methods** are *functions* that belong to an object and define behaviors or actions that the object can perform. Methods can manipulate the object's attributes or perform computations.
+
+```py
+class Car:
+    def __init__(self, make, model, color):
+        self.make = make
+        self.model = model
+        self.color = color
+    
+    def drive(self):  # Method
+        print(f"The {self.color} {self.make} {self.model} is driving.")
+
+my_car = Car('Toyota', 'Camry', 'blue')
+my_car.drive()  # Calling a method
+```
+
 # Built-in Function vs. Method
 
 * Built-in Function: A function that is provided by Python and can be used across different types of objects.
