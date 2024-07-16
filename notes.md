@@ -1689,6 +1689,142 @@ print(total)    # 15
 * **ZeroDivisionError** indicates you are dividing a number by zero.
 
 
+# Day 16: Date time
+
+The module `datetime` help to handle date and time in Python.
+
+```py
+import datetime
+print(dir(datetime))
+# ['MAXYEAR', 'MINYEAR', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'date', 'datetime', 'datetime_CAPI', 'sys', 'time', 'timedelta', 'timezone', 'tzinfo']
+```
+
+## Getting datetime info
+
+```py
+from datetime import datetime
+now = datetime.now()
+print(now)                      # 2024-07-16 14:57:25.550344
+day = now.day                   # 16
+month = now.month               # 7
+year = now.year                 # 2024
+hour = now.hour                 # 14
+minute = now.minute             # 57
+second = now.second             # 25
+timestamp = now.timestamp()     # number of sec elapsed from 1st of January 1970 UTC.
+print(day, month, year, hour, minute)
+print('timestamp', timestamp)
+print(f'{day}/{month}/{year}, {hour}:{minute}')  # 16/7/2024, 14:57
+```
+
+## Formatting date output using `strftime` method
+
+```py
+from datetime import datetime
+new_year = datetime(2020, 1, 1)
+print(new_year)      # 2020-01-01 00:00:00
+day = new_year.day
+month = new_year.month
+year = new_year.year
+hour = new_year.hour
+minute = new_year.minute
+second = new_year.second
+print(day, month, year, hour, minute) #1 1 2020 0 0
+print(f'{day}/{month}/{year}, {hour}:{minute}, {a%}')  # 1/1/2020, 0:0
+```
+
+Here's the cheatsheet for Python strftime: https://strftime.org/
+```py
+from datetime import datetime
+# current date and time
+now = datetime.now()
+t = now.strftime("%H:%M:%S")
+print("time:", t)
+
+time_one = now.strftime("%m/%d/%Y, %H:%M:%S") # mm/dd/YY H:M:S format
+print("time one:", time_one)
+
+time_two = now.strftime("%d/%m/%Y, %H:%M:%S") # dd/mm/YY H:M:S format
+print("time two:", time_two) 
+
+now.strftime("%m/%d/%Y, %A, %H:%M:%S") # '07/16/2024, 15:07:51, Tuesday'
+```
+
+## Parsing string to time using `strptime` method
+
+```py
+from datetime import datetime
+date_string = "5 December, 2019" # "date_string = 5 December, 2019"
+print("date_string =", date_string)
+date_object = datetime.strptime(date_string, "%d %B, %Y")
+print("date_object =", date_object) # "date_object = 2019-12-05 00:00:00"
+```
+
+## Using `date` from datetime
+
+```py
+from datetime import date
+d = date(2024, 1, 1)
+print(d)
+print('Current date:', d.today())    # 2024-7-16
+# date object of today's date
+today = date.today()
+print("Current year:", today.year)   # 2024
+print("Current month:", today.month) # 7
+print("Current day:", today.day)     # 16
+```
+
+## Time objects to represent time
+
+```py
+from datetime import time
+# time(hour = 0, minute = 0, second = 0)
+a = time()
+print("a =", a)  # a = 00:00:00
+
+# time(hour, minute and second)
+b = time(10, 30, 50)
+print("b =", b) # b = 10:30:50
+
+# time(hour, minute and second)
+c = time(hour=10, minute=30, second=50)
+print("c =", c) # c = 10:30:50
+
+# time(hour, minute, second, microsecond)
+d = time(10, 30, 50, 200555)
+print("d =", d) # d = 10:30:50.200555
+```
+
+## Difference between two time points
+
+* using `date`
+
+```py
+today = date(year=2019, month=12, day=5)
+new_year = date(year=2020, month=1, day=1)
+time_left_for_newyear = new_year - today
+# Time left for new year:  27 days, 0:00:00
+print('Time left for new year: ', time_left_for_newyear)
+```
+
+* using `datetime`
+
+```py
+t1 = datetime(year = 2019, month = 12, day = 5, hour = 0, minute = 59, second = 0)
+t2 = datetime(year = 2020, month = 1, day = 1, hour = 0, minute = 0, second = 0)
+diff = t2 - t1
+print('Time left for new year:', diff)
+```
+
+* using `timedelta`
+```py
+from datetime import timedelta
+t1 = timedelta(weeks=12, days=10, hours=4, seconds=20)
+t2 = timedelta(days=7, hours=5, minutes=3, seconds=30)
+t3 = t1 - t2
+print("t3 =", t3)
+```
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
