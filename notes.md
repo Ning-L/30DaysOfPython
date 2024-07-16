@@ -1380,6 +1380,21 @@ cube = power(2)(3)   # function power now need 2 arguments to run, in separate r
 print(cube)          # 8
 ```
 
+## Dictionary comprehension
+
+```py
+# syntax
+{key_expression: value_expression for item in iterable if condition}
+
+# example:
+numbers = [1, 2, 3, 4, 5]
+squared_dict = {num: num**2 for num in numbers}
+print(squared_dict) # {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+
+even_squared_dict = {num: num**2 for num in numbers if num % 2 == 0}
+print(even_squared_dict) # {2: 4, 4: 16}
+
+```
 # Day 14: Higer oder functions
 
 In Python, following operations are allowed:
