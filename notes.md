@@ -1855,6 +1855,111 @@ print("d =", d) # d = 10:30:50.200555
     print("t3 =", t3)
     ```
 
+# Day 17
+
+## Exception handling
+
+Use `try` and `expect` to handle errors and exit "gracefully".
+Exceptions could be an incorrect input, wrong file name, unable to find a file, a malfunctioning, IO device, etc.
+
+```py
+# syntax
+try:
+    code in this block if things go well
+except:
+    code in this block run if things go wrong
+
+# example:
+try:
+    print(10 + '5')
+except:
+    print('Something went wrong')
+## "Something went wrong"
+
+try:
+    name = input('Enter your name:')
+    year_born = input('Year you were born:')
+    age = 2019 - year_born
+    print(f'You are {name}. And your age is {age}.')
+except:
+    print('Something went wrong')
+# "Something went wrong"
+"""
+the print() was not executed.
+but we don't know exactly the problem.
+so we can use different error type with except
+"""
+
+try:
+    name = input('Enter your name:')
+    year_born = input('Year you were born:')
+    age = 2019 - year_born
+    print(f'You are {name}. And your age is {age}.')
+except TypeError:
+    print('Type error occured')
+except ValueError:
+    print('Value error occured')
+except ZeroDivisionError:
+    print('zero division error occured')
+# Enter your name: 11
+# Year you were born: 22
+# Type error occured
+
+"""
+now we know it's type error
+next, we add additional block else and finally
+"""
+try:
+    name = input('Enter your name:')
+    year_born = input('Year you born:')
+    age = 2019 - year_born
+    print(f'You are {name}. And your age is {age}.')
+except TypeError:
+    print('Type error occur') # run here and following except when there is an exception
+except ValueError:
+    print('Value error occur')
+except ZeroDivisionError:
+    print('zero division error occur')
+else:
+    print('I usually run with the try block') # no exception, run here
+finally:
+    print('I alway run.') # always run here
+# Enter your name:adam
+# Year you born:1990
+# Type error occur
+# I alway run.
+
+## shorten code
+try:
+    name = input('Enter your name:')
+    year_born = input('Year you born:')
+    age = 2019 - year_born
+    print(f'You are {name}. And your age is {age}.')
+except Exception as e:
+    print(e)
+# Enter your name:adma
+# Year you born:1990
+# unsupported operand type(s) for -: 'int' and 'str'
+
+try:
+    name = input('Enter your name:')
+    year_born = input('Year you born:')
+    age = 2019 - year_born
+    print(f'You are {name}. And your age is {age}.')
+except Exception as e:
+    print(e)
+finally:
+    print("I'm the line that always executed")
+# Enter your name:adam
+# Year you born:1909
+# unsupported operand type(s) for -: 'int' and 'str'
+# I'm the line that always executed
+```
+
+## Packing and unpacking arguments
+
+<!-- TO HERE -->
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
