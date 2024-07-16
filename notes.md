@@ -1,4 +1,4 @@
-Following the 30 days of Python challenge: https://github.com/Asabeneh/30-Days-Of-Python
+Following the 30 days of Python challenge: <https://github.com/Asabeneh/30-Days-Of-Python>
 
 # Day 1: Data types
 
@@ -23,7 +23,7 @@ Typical use cases for each data structure:
 
 ## Built-in functions
 
-Docs for built-in functions: https://docs.python.org/3.9/library/functions.html
+Docs for built-in functions: <https://docs.python.org/3.9/library/functions.html>
 
 The corresponding R functions for the the most commonly used Python built-in functions:
 
@@ -159,10 +159,10 @@ The equivalent in R is `bitwShiftL()` and `bitwShiftR`.
 Apart from the ordinary comparison operators such as `>`, `<`, `==`, `!=`,
 Python uses also the following keywords for comparison:
 
-* *is*: Returns `True` if both variables are (point to) the same object (`x is y`) (equivalent to `identical()` in R)
-* *is not*: Returns `True` if both variables are not the same object (`x is not y`)
-* *in*: Returns `True` if the queried list contains a certain item (`x in y`) (equivalent to `%in%` in R)
-* *not in*: Returns `True` if the queried list doesn't have a certain item (`x in y`)
+- *is*: Returns `True` if both variables are (point to) the same object (`x is y`) (equivalent to `identical()` in R)
+- *is not*: Returns `True` if both variables are not the same object (`x is not y`)
+- *in*: Returns `True` if the queried list contains a certain item (`x in y`) (equivalent to `%in%` in R)
+- *not in*: Returns `True` if the queried list doesn't have a certain item (`x in y`)
 
 ## Logical operators
 
@@ -522,13 +522,13 @@ Use `in` operator.
 
 ## Modifying items of a list
 
-* Use the assignment of new values to modify items
+- Use the assignment of new values to modify items
 
 ```py
 fruits[1:3] = ["a", "b"] # ['banana', 'a', 'b', 'lemon']
 ```
 
-* Adding
+- Adding
 
 Use the method `append()`
 
@@ -544,7 +544,7 @@ fruits.extend(["c", "d"]) # extend() allows to add multiple items at once
 P.S.: Python's extend() method is designed to concatenate elements to the end of a list,
 regardless of the type of iterable used (list, tuple, or set).
 
-* Inserting
+- Inserting
 
 Use method `insert(idx, item)` to insert a single element at a specified index of a list.
 
@@ -552,42 +552,42 @@ Use method `insert(idx, item)` to insert a single element at a specified index o
 fruits.insert(2, 'watermelon')
 ```
 
-* Removing
+- Removing
 
 1. Use method `remove(item)` to remove a specified item.
 
-```py
-fruits.remove('watermelon')
-fruits.remove('c') # only remove the 1st occurrence
+    ```py
+    fruits.remove('watermelon')
+    fruits.remove('c') # only remove the 1st occurrence
 
-# Remove "banana" and "lemon" at once
-fruits = [item for item in fruits if item not in ["banana", "lemon"]]
-# Remove all occurrences of "d"
-fruits = [item for item in fruits if item != 'd']
-```
+    # Remove "banana" and "lemon" at once
+    fruits = [item for item in fruits if item not in ["banana", "lemon"]]
+    # Remove all occurrences of "d"
+    fruits = [item for item in fruits if item != 'd']
+    ```
 
 2. Use method `pop(idx)` to remove a specified item,
 the last item will be removed if no index specified.
 
-```py
-fruits.pop(1)
-fruits.pop() # last item removed
-```
+    ```py
+    fruits.pop(1)
+    fruits.pop() # last item removed
+    ```
 
 3. Use the keyword `del` can delete a item of a specified index,
 items within index range, or delete the whole list.
 
-```py
-del fruits[0]
-del fruits[:3]
-del fruits
-```
+    ```py
+    del fruits[0]
+    del fruits[:3]
+    del fruits
+    ```
 
 4. Emptying the list with the `clear()` method
 
-```py
-fruits.clear()
-```
+    ```py
+    fruits.clear()
+    ```
 
 ## Copying a list
 
@@ -596,13 +596,13 @@ fruits.clear()
 
 2. use the `copy()` method
 
-```py
-lst = ['item1', 'item2']
-lst2 = lst
-lst2.remove("item1") 
-lst = ['item1', 'item2']
-lst_copy = lst.copy()
-```
+    ```py
+    lst = ['item1', 'item2']
+    lst2 = lst
+    lst2.remove("item1") 
+    lst = ['item1', 'item2']
+    lst_copy = lst.copy()
+    ```
 
 ## Joining lists
 
@@ -669,8 +669,8 @@ Use built-in function `len()` to get the length of a tuple.
 
 Similar to list, we can use positive or negative indexing.
 
-* `count()`: to count occurrence of a speficied item
-* `index()`: to find the index of a speficied item
+- `count()`: to count occurrence of a speficied item
+- `index()`: to find the index of a speficied item
 
 ## Slicing
 
@@ -727,24 +727,24 @@ del fruits_and_vegetables
 Set is unordered and un-indexed, set is used to store unique items,
 and it is possible to find the union, intersection, difference, symmetric difference, subset, super set and disjoint set among sets.
 
-* Creation with the built-in function `set()` to create an empty set, and `{}` to initiate a set with values:
+- Creation with the built-in function `set()` to create an empty set, and `{}` to initiate a set with values:
 
-```py
-my_set = set()
-my_set = {"a", "b", "c"}
-```
+    ```py
+    my_set = set()
+    my_set = {"a", "b", "c"}
+    ```
 
-* Getting length with the built-in function `len()`.
-* Accessing items in a set with loops to access itmes. See the loop section.
-* Checking an item with the `in` operator.
-* Adding items with `add()` or `update()` method.
+- Getting length with the built-in function `len()`.
+- Accessing items in a set with loops to access itmes. See the loop section.
+- Checking an item with the `in` operator.
+- Adding items with `add()` or `update()` method.
 
-```py
-my_set.add("one item")
-my_set.update(["one item", "two item"]) # update takes a list
-```
+    ```py
+    my_set.add("one item")
+    my_set.update(["one item", "two item"]) # update takes a list
+    ```
 
-* Removing items with `remove()` (raise error if item not found), `pop()` (remove a random item and return the removed item) or `discard()`
+- Removing items with `remove()` (raise error if item not found), `pop()` (remove a random item and return the removed item) or `discard()`
 
 ```py
 st = {'item1', 'item2', 'item3', 'item4'}
@@ -755,61 +755,61 @@ fruits.pop()  # removes a random item from the set
 removed_item = fruits.pop() # store the removed item in case we are interested in
 ```
 
-* Clearing items of a set with `clear()` method.
-* Deleting a set with the `del` statement.
-* Converting: list and set can be converted to each other, set will remove duplicates and order is lost.
+- Clearing items of a set with `clear()` method.
+- Deleting a set with the `del` statement.
+- Converting: list and set can be converted to each other, set will remove duplicates and order is lost.
 
-```py
-lst = ['item1', 'item2', 'item3', 'item4', 'item1']
-st = set(lst)  # {'item1', 'item4', 'item3', 'item2'}
-```
+    ```py
+    lst = ['item1', 'item2', 'item3', 'item4', 'item1']
+    st = set(lst)  # {'item1', 'item4', 'item3', 'item2'}
+    ```
 
-* Joining sets with `union()` or `update()` method.
+- Joining sets with `union()` or `update()` method.
 
-```py
-st1 = {'item1', 'item2', 'item3', 'item4'}
-st2 = {'item5', 'item6', 'item7', 'item8'}
-st3 = st1.union(st2)
+    ```py
+    st1 = {'item1', 'item2', 'item3', 'item4'}
+    st2 = {'item5', 'item6', 'item7', 'item8'}
+    st3 = st1.union(st2)
 
-st1 = {'item1', 'item2', 'item3', 'item4'}
-st2 = {'item5', 'item6', 'item7', 'item8'}
-st1.update(st2) # st2 contents are added to st1
-```
+    st1 = {'item1', 'item2', 'item3', 'item4'}
+    st2 = {'item5', 'item6', 'item7', 'item8'}
+    st1.update(st2) # st2 contents are added to st1
+    ```
 
-* Intersection: `st1.intersection(st2)`
-* Subset or supperset: `st1.issubset(st2)`, `st1.issuperset(st2)`
-* Difference: `st1.difference(st2)`
-* Symmetric difference: `st1.symmetric_difference(st2)`, returns all items which exist only in one set.
-* Check if two sets do not have any common item: `st2.isdisjoint(st1) `
+- Intersection: `st1.intersection(st2)`
+- Subset or supperset: `st1.issubset(st2)`, `st1.issuperset(st2)`
+- Difference: `st1.difference(st2)`
+- Symmetric difference: `st1.symmetric_difference(st2)`, returns all items which exist only in one set.
+- Check if two sets do not have any common item: `st2.isdisjoint(st1)`
 
 # Day 8: Dictionaries
 
 A dictionary is a collection of unordered, modifiable(mutable) paired (key: value) data type.
 The key should be unique.
 
-* Creation with curly brackets `{}` or the built-in function `dict()`.
+- Creation with curly brackets `{}` or the built-in function `dict()`.
 
-```py
-empty_dict = {}
-# Dictionary with data values
-dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
-```
+    ```py
+    empty_dict = {}
+    # Dictionary with data values
+    dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
+    ```
 
-* Getting length with the `len()` function, it checks the number of 'key: value' pairs in the dictionary.
-* Accessing items via the key name: `dct["key1"]`. Can raise error if the key is not found.
+- Getting length with the `len()` function, it checks the number of 'key: value' pairs in the dictionary.
+- Accessing items via the key name: `dct["key1"]`. Can raise error if the key is not found.
 We can use `get()` method to access items: `dct.get("keyXX")`, if key does not exist, it will return None, a NoneType object data type.
-* Adding item should be a 'key: value' pair: `dct["key5"] = "value5"`
-* Modifying items via the key:  `dct["key5"] = "value555"`
-* Checking key with the `in` operator:  `"key5" in dct`
-* Removing key: value pairs with `pop(key)`, `popitem()` or `del`
+- Adding item should be a 'key: value' pair: `dct["key5"] = "value5"`
+- Modifying items via the key:  `dct["key5"] = "value555"`
+- Checking key with the `in` operator:  `"key5" in dct`
+- Removing key: value pairs with `pop(key)`, `popitem()` or `del`
 
-```py
-dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
-dct.pop('key1') # removes key1 item
-dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
-dct.popitem() # removes the last item (LIFO principle)
-del dct['key2'] # removes key2 item
-```
+    ```py
+    dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
+    dct.pop('key1') # removes key1 item
+    dct = {'key1':'value1', 'key2':'value2', 'key3':'value3', 'key4':'value4'}
+    dct.popitem() # removes the last item (LIFO principle)
+    del dct['key2'] # removes key2 item
+    ```
 
 P.S.:
 
@@ -821,22 +821,22 @@ This principle is applied in the `popitem()` method of dictionaries in Python
   - Check the [Python 3 doc](https://docs.python.org/3/)
   - Interactive inspection with the `__doc__` attribute, ex: `str.split.__doc__`, `list.append.__doc__`, etc.
 
-* Chanage dictionary to list of tuples with the `items()` method: `dct.items()`
-* Clearing a dictionary with the `clear()` method: `dct.clear()`
-* Deleting a dictionary with `del` statement
-* Copy a dictionary with `copy()` method
-* Getting dictionary keys/values as a list with the `keys()`/`values()` method: `dct.keys()`, `dct.values()`.
+- Chanage dictionary to list of tuples with the `items()` method: `dct.items()`
+- Clearing a dictionary with the `clear()` method: `dct.clear()`
+- Deleting a dictionary with `del` statement
+- Copy a dictionary with `copy()` method
+- Getting dictionary keys/values as a list with the `keys()`/`values()` method: `dct.keys()`, `dct.values()`.
 We can do inverse, aka, build a dictionary based on two list:
 
-```py
-my_keys = ['a', 'b', 'c']
-my_values = [1, 2, 3]
-# Create dictionary using zip() and dict()
-my_dict = dict(zip(my_keys, my_values))
-# Create dictionary using dictionary comprehension
-my_dict = {k: v for k, v in zip(my_keys, my_values)}
-## attention if lists with different length, zip() will stop pairing when the shortest list is exhausted
-```
+    ```py
+    my_keys = ['a', 'b', 'c']
+    my_values = [1, 2, 3]
+    # Create dictionary using zip() and dict()
+    my_dict = dict(zip(my_keys, my_values))
+    # Create dictionary using dictionary comprehension
+    my_dict = {k: v for k, v in zip(my_keys, my_values)}
+    ## attention if lists with different length, zip() will stop pairing when the shortest list is exhausted
+    ```
 
 # Day 9: Conditionals
 
@@ -905,30 +905,30 @@ else:
 
 ## `if` condition and Logical operators
 
-* To avoid nested condition, we can write nested conditions by using logical operator `and`
+- To avoid nested condition, we can write nested conditions by using logical operator `and`
 
-```py
-a = 0
-if a > 0 and a % 2 == 0:
-    print('A is a positive and even integer')
-elif a > 0 and a % 2 !=  0:
-    print('A is a positive integer')
-elif a == 0:
-    print('A is zero')
-else:
-    print('A is a negative number')
-```
+    ```py
+    a = 0
+    if a > 0 and a % 2 == 0:
+        print('A is a positive and even integer')
+    elif a > 0 and a % 2 !=  0:
+        print('A is a positive integer')
+    elif a == 0:
+        print('A is zero')
+    else:
+        print('A is a negative number')
+    ```
 
-* Combine the `or`
+- Combine the `or`
 
-```py
-user = 'James'
-access_level = 3
-if user == 'admin' or access_level >= 4:
-        print('Access granted!')
-else:
-    print('Access denied!')
-```
+    ```py
+    user = 'James'
+    access_level = 3
+    if user == 'admin' or access_level >= 4:
+            print('Access granted!')
+    else:
+        print('Access denied!')
+    ```
 
 # Day 10: Loops
 
@@ -956,30 +956,30 @@ else:
     print(count) # execute this line when count is no longer <5
 ```
 
-* Use `break` to get out of the loop.
+- Use `break` to get out of the loop.
 
-```py
-count = 0
-while count < 5:
-    print(count)
-    count = count + 1
-    if count == 3:
-        break
-# only prints 0, 1, 2, when arrives at 3 it stops.
-```
-
-* Use `continue` to skip the current iteration and continue with the next.
-
-```py
-count = 0
-while count < 5:
-    if count == 3:
+    ```py
+    count = 0
+    while count < 5:
+        print(count)
         count = count + 1
-        continue
-    print(count)
-    count = count + 1
-# only prints 0, 1, 2 and 4 (skips 3)
-```
+        if count == 3:
+            break
+    # only prints 0, 1, 2, when arrives at 3 it stops.
+    ```
+
+- Use `continue` to skip the current iteration and continue with the next.
+
+    ```py
+    count = 0
+    while count < 5:
+        if count == 3:
+            count = count + 1
+            continue
+        print(count)
+        count = count + 1
+    # only prints 0, 1, 2 and 4 (skips 3)
+    ```
 
 ## `for` loop
 
@@ -1032,56 +1032,56 @@ for company in it_companies:
     print(company)
 ```
 
-* Use `break` when we like to stop our loop before it is completed.
+- Use `break` when we like to stop our loop before it is completed.
 
-```py
-numbers = (0,1,2,3,4,5)
-for number in numbers:
-    print(number)
-    if number == 3:
-        break
-# loop stop when number gets to 3
-```
+    ```py
+    numbers = (0,1,2,3,4,5)
+    for number in numbers:
+        print(number)
+        if number == 3:
+            break
+    # loop stop when number gets to 3
+    ```
 
-* Use `continue` when we like to skip some of the steps in the iteration of the loop.
+- Use `continue` when we like to skip some of the steps in the iteration of the loop.
 
-```py
-numbers = (0,1,2,3,4,5)
-for number in numbers:
-    print(number)
-    if number == 3:
-        continue
-    print('Next number should be ', number + 1) if number != 5 else print("loop's end") # for short hand conditions need both if and else statements
-print('outside the loop')
+    ```py
+    numbers = (0,1,2,3,4,5)
+    for number in numbers:
+        print(number)
+        if number == 3:
+            continue
+        print('Next number should be ', number + 1) if number != 5 else print("loop's end") # for short hand conditions need both if and else statements
+    print('outside the loop')
 
-# standard 
-for number in numbers:
-    print(number)
-    if number == 3:
-        continue
-    if number != 5: # will not be executed here when number is 3
-        print('Next number should be', number + 1)
-    else:
-        print("loop's end")
-print('outside the loop')
+    # standard 
+    for number in numbers:
+        print(number)
+        if number == 3:
+            continue
+        if number != 5: # will not be executed here when number is 3
+            print('Next number should be', number + 1)
+        else:
+            print("loop's end")
+    print('outside the loop')
 
-## 0
-## Next number should be 1
-## 1
-## Next number should be 2
-## 2
-## Next number should be 3
-## 3
-## 4
-## Next number should be 5
-## 5
-## loop's end
-## outside the loop
+    ## 0
+    ## Next number should be 1
+    ## 1
+    ## Next number should be 2
+    ## 2
+    ## Next number should be 3
+    ## 3
+    ## 4
+    ## Next number should be 5
+    ## 5
+    ## loop's end
+    ## outside the loop
 
-# with a range(start,end,step), by default step is 1, need at least the argument "end"
-for number in range(11):
-    print(number)   # prints 0 to 10, not including 11
-```
+    # with a range(start,end,step), by default step is 1, need at least the argument "end"
+    for number in range(11):
+        print(number)   # prints 0 to 10, not including 11
+    ```
 
 ### Nested `for` loop
 
@@ -1228,91 +1228,91 @@ Combining with the keyword `from`, we can import the functions differently, we c
 We can use the keyword `as` to rename module's name while importing,
 we can use the rename function directly: `fullname()`
 
-* `os` module: to perform operating system tasks
+- `os` module: to perform operating system tasks
 
-```py
-# import the module
-import os
-# Creating a directory
-os.mkdir('directory_name')
-# Changing the current directory
-os.chdir('path')
-# Getting current working directory
-os.getcwd()
-# Removing directory
-os.rmdir()
-```
+    ```py
+    # import the module
+    import os
+    # Creating a directory
+    os.mkdir('directory_name')
+    # Changing the current directory
+    os.chdir('path')
+    # Getting current working directory
+    os.getcwd()
+    # Removing directory
+    os.rmdir()
+    ```
 
-* `sys` module: manipulate different parts of the Python runtime environment
+- `sys` module: manipulate different parts of the Python runtime environment
 
-```py
-## example script.py
-import sys
-#print(sys.argv[0], argv[1],sys.argv[2])  # this line would print out: filename argument1 argument2
-print('Welcome {}. Enjoy  {} challenge!'.format(sys.argv[1], sys.argv[2]))
-```
+    ```py
+    ## example script.py
+    import sys
+    #print(sys.argv[0], argv[1],sys.argv[2])  # this line would print out: filename argument1 argument2
+    print('Welcome {}. Enjoy  {} challenge!'.format(sys.argv[1], sys.argv[2]))
+    ```
 
-```bash
-python script.py Asabeneh 30DaysOfPython
-```
+    ```bash
+    python script.py Asabeneh 30DaysOfPython
+    ```
 
-```py
-## other useful sys commands:
-# to exit sys
-sys.exit()
-# To know the largest integer variable it takes
-sys.maxsize
-# To know environment path
-sys.path
-# To know the version of python you are using
-sys.version
-```
+    ```py
+    ## other useful sys commands:
+    # to exit sys
+    sys.exit()
+    # To know the largest integer variable it takes
+    sys.maxsize
+    # To know environment path
+    sys.path
+    # To know the version of python you are using
+    sys.version
+    ```
 
-* `statistics` module: provides functions for mathematical statistics of numeric data.
+- `statistics` module: provides functions for mathematical statistics of numeric data.
 
-```py
-from statistics import * # importing all the statistics modules
-ages = [20, 20, 4, 24, 25, 22, 26, 20, 23, 22, 26]
-print(mean(ages))       # ~22.9
-print(median(ages))     # 23
-print(mode(ages))       # 20
-print(stdev(ages))      # ~2.3
-```
+    ```py
+    from statistics import * # importing all the statistics modules
+    ages = [20, 20, 4, 24, 25, 22, 26, 20, 23, 22, 26]
+    print(mean(ages))       # ~22.9
+    print(median(ages))     # 23
+    print(mode(ages))       # 20
+    print(stdev(ages))      # ~2.3
+    ```
 
-* `math` module: provides many mathematical operations and constants.
+- `math` module: provides many mathematical operations and constants.
 
-```py
-import math
-print(math.pi)           # 3.141592653589793, pi constant
-print(math.sqrt(2))      # 1.4142135623730951, square root
-print(math.pow(2, 3))    # 8.0, exponential function
-print(math.floor(9.81))  # 9, rounding to the lowest
-print(math.ceil(9.81))   # 10, rounding to the highest
-print(math.log10(100))   # 2, logarithm with 10 as base
-```
+    ```py
+    import math
+    print(math.pi)           # 3.141592653589793, pi constant
+    print(math.sqrt(2))      # 1.4142135623730951, square root
+    print(math.pow(2, 3))    # 8.0, exponential function
+    print(math.floor(9.81))  # 9, rounding to the lowest
+    print(math.ceil(9.81))   # 10, rounding to the highest
+    print(math.log10(100))   # 2, logarithm with 10 as base
+    ```
 
-It's possible to import multiple function at once:
+    It's possible to import multiple function at once:
 
-```py
-from math import pi, sqrt, pow, floor, ceil, log10
-```
+    ```py
+    from math import pi, sqrt, pow, floor, ceil, log10
+    ```
 
-* `string` module:
+- `string` module:
 
-```py
-import string
-print(string.ascii_letters) # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-print(string.digits)        # 0123456789
-print(string.punctuation)   # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-```
+    ```py
+    import string
+    print(string.ascii_letters) # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    print(string.digits)        # 0123456789
+    print(string.punctuation)   # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+    ```
 
-* `random` module: gives random number.
+- `random` module: gives random number.
 
-```py
-from random import random, randint
-print(random())   # it doesn't take any arguments; it returns a value between 0 and 0.9999
-print(randint(5, 20)) # it returns a random integer number between [5, 20] inclusive
-```
+    ```py
+    from random import random, randint
+    print(random())   # it doesn't take any arguments; it returns a value between 0 and 0.9999
+    print(randint(5, 20)) # it returns a random integer number between [5, 20] inclusive
+    ```
 
 # Day 13: List comprehension & lambda function
 
@@ -1479,7 +1479,7 @@ print(result(-3))      # 3
 
 ## Python closures
 
-**/!\ not very clear, to review this notion**
+Attention: **/!\ not very clear, to review this notion**
 
 Python allows a nested function to access the outer scope of the enclosing function.
 
@@ -1503,7 +1503,7 @@ print(result)  # Output: 15
 
 ## Python decorators
 
-**/!\ not clear, to review this notion, why use it?**
+Attention: **/!\ not clear, to review this notion, why use it?**
 
 A decorator is a design pattern in Python that allows a user to add new functionality to an existing object without modifying its structure.
 Decorators are usually called before the definition of a function you want to decorate.
@@ -1579,83 +1579,83 @@ print_full_name("Asabeneh", "Yetayeh", 'Finland')
 Some of the built-in higher order functions that we cover in this part are map(), filter, and reduce.
 Lambda function can be passed as a parameter.
 
-* `map()`
+- `map()`
 
-```py
-# syntax
-map(function, iterable)
+    ```py
+    # syntax
+    map(function, iterable)
 
-# examples
-numbers = [1, 2, 3, 4, 5] # iterable
-def square(x):
-    return x ** 2
-numbers_squared = map(square, numbers)
-print(list(numbers_squared))    # [1, 4, 9, 16, 25]
+    # examples
+    numbers = [1, 2, 3, 4, 5] # iterable
+    def square(x):
+        return x ** 2
+    numbers_squared = map(square, numbers)
+    print(list(numbers_squared))    # [1, 4, 9, 16, 25]
 
-numbers_squared = map(lambda x : x ** 2, numbers) # apply it with a lambda function
-print(list(numbers_squared))    # [1, 4, 9, 16, 25]
-
-
-numbers_str = ['1', '2', '3', '4', '5']  # iterable
-numbers_int = map(int, numbers_str)
-print(list(numbers_int))    # [1, 2, 3, 4, 5]
+    numbers_squared = map(lambda x : x ** 2, numbers) # apply it with a lambda function
+    print(list(numbers_squared))    # [1, 4, 9, 16, 25]
 
 
-names = ['Asabeneh', 'Lidiya', 'Ermias', 'Abraham']  # iterable
-def change_to_upper(name):
-    return name.upper()
+    numbers_str = ['1', '2', '3', '4', '5']  # iterable
+    numbers_int = map(int, numbers_str)
+    print(list(numbers_int))    # [1, 2, 3, 4, 5]
 
-names_upper_cased = map(change_to_upper, names)
-print(list(names_upper_cased))    # ['ASABENEH', 'LIDIYA', 'ERMIAS', 'ABRAHAM']
 
-# apply with a lambda function
-names_upper_cased = map(lambda name: name.upper(), names)
-print(list(names_upper_cased))    # ['ASABENEH', 'LIDIYA', 'ERMIAS', 'ABRAHAM']
-```
+    names = ['Asabeneh', 'Lidiya', 'Ermias', 'Abraham']  # iterable
+    def change_to_upper(name):
+        return name.upper()
 
-* `filter()`
+    names_upper_cased = map(change_to_upper, names)
+    print(list(names_upper_cased))    # ['ASABENEH', 'LIDIYA', 'ERMIAS', 'ABRAHAM']
 
-The filter() function calls the specified function which returns boolean
-for each item of the specified iterable (list). It filters the items that satisfy the filtering criteria.
+    # apply with a lambda function
+    names_upper_cased = map(lambda name: name.upper(), names)
+    print(list(names_upper_cased))    # ['ASABENEH', 'LIDIYA', 'ERMIAS', 'ABRAHAM']
+    ```
 
-```py
-# syntax
-filter(function, iterable)
+- `filter()`
 
-# example
-# Lets filter only even nubers
-numbers = [1, 2, 3, 4, 5]  # iterable
+    The filter() function calls the specified function which returns boolean
+    for each item of the specified iterable (list). It filters the items that satisfy the filtering criteria.
 
-def is_even(num):
-    if num % 2 == 0:
-        return True
-    return False
+    ```py
+    # syntax
+    filter(function, iterable)
 
-even_numbers = filter(is_even, numbers)
-print(list(even_numbers))       # [2, 4]
+    # example
+    # Lets filter only even nubers
+    numbers = [1, 2, 3, 4, 5]  # iterable
 
-list(map(is_even, numbers))     # [False, True, False, True, False]
+    def is_even(num):
+        if num % 2 == 0:
+            return True
+        return False
 
-```
+    even_numbers = filter(is_even, numbers)
+    print(list(even_numbers))       # [2, 4]
 
-* `reduce()`
+    list(map(is_even, numbers))     # [False, True, False, True, False]
 
-The reduce() function is defined in the functools module and we should import it from this module.
-Like map and filter it takes two parameters, a function and an iterable.
-However, it does not return another iterable, instead it returns a single value.
+    ```
 
-```py
-numbers_str = ['1', '2', '3', '4', '5']  # iterable
-def add_two_nums(x, y):
-    return int(x) + int(y)
+- `reduce()`
 
-total = reduce(add_two_nums, numbers_str) 
-'''
-The reduce function applies `add_two_nums` cumulatively to the items of `numbers_str`,
-from left to right, so as to reduce the iterable to a single value.
-'''
-print(total)    # 15
-```
+    The reduce() function is defined in the functools module and we should import it from this module.
+    Like map and filter it takes two parameters, a function and an iterable.
+    However, it does not return another iterable, instead it returns a single value.
+
+    ```py
+    numbers_str = ['1', '2', '3', '4', '5']  # iterable
+    def add_two_nums(x, y):
+        return int(x) + int(y)
+
+    total = reduce(add_two_nums, numbers_str) 
+    '''
+    The reduce function applies `add_two_nums` cumulatively to the items of `numbers_str`,
+    from left to right, so as to reduce the iterable to a single value.
+    '''
+    print(total)    # 15
+    ```
 
 # Day 15: Error types
 
@@ -1761,7 +1761,7 @@ print(day, month, year, hour, minute) #1 1 2020 0 0
 print(f'{day}/{month}/{year}, {hour}:{minute}, {a%}')  # 1/1/2020, 0:0
 ```
 
-Here's the cheatsheet for Python strftime: https://strftime.org/
+Here's the cheatsheet for Python strftime: <https://strftime.org/>
 
 ```py
 from datetime import datetime
@@ -1826,34 +1826,34 @@ print("d =", d) # d = 10:30:50.200555
 
 ## Difference between two time points
 
-* using `date`
+- using `date`
 
-```py
-today = date(year=2019, month=12, day=5)
-new_year = date(year=2020, month=1, day=1)
-time_left_for_newyear = new_year - today
-# Time left for new year:  27 days, 0:00:00
-print('Time left for new year: ', time_left_for_newyear)
-```
+    ```py
+    today = date(year=2019, month=12, day=5)
+    new_year = date(year=2020, month=1, day=1)
+    time_left_for_newyear = new_year - today
+    # Time left for new year:  27 days, 0:00:00
+    print('Time left for new year: ', time_left_for_newyear)
+    ```
 
-* using `datetime`
+- using `datetime`
 
-```py
-t1 = datetime(year = 2019, month = 12, day = 5, hour = 0, minute = 59, second = 0)
-t2 = datetime(year = 2020, month = 1, day = 1, hour = 0, minute = 0, second = 0)
-diff = t2 - t1
-print('Time left for new year:', diff)
-```
+    ```py
+    t1 = datetime(year = 2019, month = 12, day = 5, hour = 0, minute = 59, second = 0)
+    t2 = datetime(year = 2020, month = 1, day = 1, hour = 0, minute = 0, second = 0)
+    diff = t2 - t1
+    print('Time left for new year:', diff)
+    ```
 
-* using `timedelta`
+- using `timedelta`
 
-```py
-from datetime import timedelta
-t1 = timedelta(weeks=12, days=10, hours=4, seconds=20)
-t2 = timedelta(days=7, hours=5, minutes=3, seconds=30)
-t3 = t1 - t2
-print("t3 =", t3)
-```
+    ```py
+    from datetime import timedelta
+    t1 = timedelta(weeks=12, days=10, hours=4, seconds=20)
+    t2 = timedelta(days=7, hours=5, minutes=3, seconds=30)
+    t3 = t1 - t2
+    print("t3 =", t3)
+    ```
 
 # Attributes vs. Methods
 
@@ -1890,9 +1890,9 @@ my_car.drive()  # Calling a method
 
 # Built-in Function vs. Method
 
-* Built-in Function: A function that is provided by Python and can be used across different types of objects.
+- Built-in Function: A function that is provided by Python and can be used across different types of objects.
 For example, `len()` is a built-in function, it can be used with strings, tuples, dictionaries, and custom objects that implement the `__len__()` method.
-* Method: A function that is associated with an object and is called on that object.
+- Method: A function that is associated with an object and is called on that object.
 For example, `append()` is a method of the list object, we cannot do `list1.len()`
 
 # Summary for common operation for manipulating different data types
@@ -1921,10 +1921,10 @@ Sure, here is the table with explanations added as the second column:
 
 ## Cheatsheets Python 3
 
-https://perso.limsi.fr/pointal/_media/python:cours:mementopython3-english.pdf
+<https://perso.limsi.fr/pointal/_media/python:cours:mementopython3-english.pdf>
 
-https://www.pythoncheatsheet.org/cheatsheet/built-in-functions
+<https://www.pythoncheatsheet.org/cheatsheet/built-in-functions>
 
 ## PEP 8 - Style guide for Python code
 
-https://peps.python.org/pep-0008
+<https://peps.python.org/pep-0008/>
