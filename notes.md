@@ -2127,6 +2127,156 @@ otherwise, the combine will stop when the shortest list is exausted.
 """
 ```
 
+# Day 18: Regular expressions
+
+## The `re` module
+
+The Python module `re` allow to use regular expression to search for a match in a string.
+
+- `re.match()`: searches only in the beginning of the first line of the string and returns matched objects if found, else returns `None`.
+
+```py
+# syntax
+re.match(substring, string, flags=0)
+# substring is a string or a pattern, string is the text we look for a pattern 
+# flags (optional), a bitwise OR of zero or more of the follwing flags:
+# "re.IGNORECASE" or "re.I": Ignore case.
+# "re.MULTILINE" or "re.M": Make `^` and `$` match the start and end of each line.
+# "re.DOTALL" or "re.S": Make `.` match any character, including newline.
+# "re.UNICODE" or "re.U": Use Unicode matching rules (this is the default).
+# "re.VERBOSE" or "re.X": Enable verbose mode, which allows you to write regular expressions that are more readable by allowing you to add whitespace and comments.
+# "re.ASCII" or "re.A": Make `\w`, `\W`, `\b`, `\B`, `\d`, `\D`, `\s`, and `\S` match only ASCII characters.
+
+import re
+
+txt = 'I love to teach python and javaScript'
+
+match = re.match('I love to Teach', txt, re.I) # It returns an object with span, and match
+print(match)
+# <re.Match object; span=(0, 15), match='I love to teach'>
+re.match('I love to Teach', txt) # not ignoring case
+# None
+
+print(re.match('to teach', txt, re.I)) # None
+print(re.match('I lovve', txt, re.I)) # None
+'''
+Returns `None` because the match function returns an object only if the text starts with the pattern
+'''
+
+# We can get the starting and ending position of the match as tuple using span
+span = match.span()
+print(span)     # (0, 15), a tuple
+
+# Lets find the start and stop position from the span
+start, end = span
+print(start, end)  # 0, 15
+
+substring = txt[start:end]
+print(substring)       # I love to teach
+```
+
+- `re.search()`: Returns a match (the 1st) object if there is one anywhere in the string, including multiline strings.
+
+```py
+# syntax
+re.search(substring, string, flags=0)
+
+re.search('to Teach', txt, re.I)
+# <re.Match object; span=(7, 15), match='to teach'>
+print(re.search('I lovve', txt, re.I)) # None
+
+multiline_txt = '''This is a sentence
+stored in multiple lines
+'''
+re.search('i', multiline_txt, re.I)
+# <re.Match object; span=(2, 3), match='i'>
+```
+
+- `re.findall()`: Returns a list containing all matches
+
+```py
+# syntax
+re.findall(substring, string, flags=0)
+
+re.findall('is', multiline_txt)
+# ['is', 'is']
+
+long_txt = """learning Python and R, but
+prefer python"""
+re.findall('Py', long_txt, re.I) # ['Py', 'py']
+## or
+re.findall('[P|p]y', long_txt) # ['Py', 'py']
+
+```
+
+- `re.split()`: Takes a string, splits it at the match points, returns a list
+
+```py
+# syntax
+re.split(substring, string, maxsplit=0, flags=0)
+
+re.split('[P|p]y', long_txt)
+# ['learning ', 'thon and R, but\nprefer ', 'thon']
+
+re.split('\n', long_txt)
+# ['learning Python and R, but', 'prefer python']
+```
+
+- `re.sub()`: Replaces one or many matches within a string
+
+```py
+# syntax
+re.sub(pattern, repl, string, count=0, flags=0)
+
+re.sub('Python|python', 'JavaScript', long_txt)
+# 'learning JavaScript and R, but\nprefer JavaScript'
+```
+
+## RegEx patterns
+
+- []: A set of characters
+  - [a-c] means, a or b or c
+  - [a-z] means, any letter from a to z
+  - [A-Z] means, any character from A to Z
+  - [0-3] means, 0 or 1 or 2 or 3
+  - [0-9] means any number from 0 to 9
+  - [A-Za-z0-9] any single character, that is a to z, A to Z or 0 to 9
+- \\: uses to escape special characters
+  - \d means: match where the string contains digits (numbers from 0-9)
+  - \D means: match where the string does not contain digits
+- . : any character except new line character(\n)
+- ^:
+  - r'^substring' eg r'^love', a sentence that **starts with** a word love
+  - r'[^abc] means **not** a, not b, not c.
+- $: ends with
+  - r'substring$' eg r'love$', sentence  that ends with a word love
+- *: zero or more times
+  - r'[a]*' means a optional or it can occur many times.
+- +: one or more times
+  - r'[a]+' means at least once (or more)
+- ?: zero or one time
+  - r'[a]?' means zero times or once
+- {3}: Exactly 3 characters
+- {3,}: At least 3 characters
+- {3,8}: 3 to 8 characters
+- |: Either or
+  - r'apple|banana' means either apple or a banana
+- (): Capture and group
+
+Use `r'` to prefix a string to tell Python that the string is a raw string,
+to treat backslashes (`\`) as literal characters and not as escape characters.
+
+```py
+normal_string = "This is a newline character: \n"
+print(normal_string)
+# This is a newline character: 
+# (followed by a new line)
+
+raw_string = r"This is a newline character: \n"
+# print(raw_string)
+# This is a newline character: \n
+```
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
