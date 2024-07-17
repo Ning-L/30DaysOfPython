@@ -2277,6 +2277,104 @@ raw_string = r"This is a newline character: \n"
 # This is a newline character: \n
 ```
 
+# Day 19: File handling and file types
+
+## File handling
+
+File handling allows us to create, read, update and delete files.
+In Python to handle data we use `open()` built-in function.
+
+```py
+# Syntax
+open('filename', mode) # mode(r, a, w, x, t,b)  could be to read, write, update
+```
+
+- "r": Read - Default value. Opens a file for reading, it returns an error if the file does not exist
+- "a": Append - Opens a file for appending, creates the file if it does not exist
+- "w": Write - Opens a file for writing, creates the file if it does not exist
+- "x": Create - Creates the specified file, returns an error if the file exists
+- "t": Text - Default value. Text mode
+- "b": Binary - Binary mode (e.g. images)
+
+Opened file has different reading methods: `read()`, `readline()`, `readlines()`.
+An opened file has to be closed with `close()` method.
+
+### Opening for reading
+
+- `read()`: read the whole text as string. If we want to limit the number of characters we want to read, we can limit it by passing int value to the read(number) method.
+
+```py
+f = open('./files/reading_file_example.txt')
+txt = f.read()
+print(type(txt))
+print(txt)
+f.close()
+## output
+# <class 'str'>
+# This is an example to show how to open a file and read.
+# This is the second line of the text.
+
+## read only the first 10 characters
+txt = f.read(10)
+print(type(txt))
+print(txt)
+f.close()
+## output
+# <class 'str'>
+# This is an
+```
+
+- `readline()`: read only the 1st line
+
+```py
+line = f.readline()
+print(type(line))
+print(line)
+f.close()
+## output
+# <class 'str'>
+# This is an example to show how to open a file and read.
+```
+
+- `readlines()`: read all the text line by line and **returns a list of lines**
+
+```py
+lines = f.readlines()
+print(type(lines))
+print(lines)
+f.close()
+## output
+# <class 'list'>
+# ['This is an example to show how to open a file and read.\n', 'This is the second line of the text.']
+
+# Another way to get all the lines as a list is using `splitlines()`:
+lines = f.read().splitlines()
+print(type(lines))
+print(lines)
+f.close()
+## output
+# <class 'list'>
+# ['This is an example to show how to open a file and read.\n', 'This is the second line of the text.']
+```
+
+A new way to have the file closed by itself using `with`:
+
+```py
+with open('./files/reading_file_example.txt') as f:
+    lines = f.read().splitlines()
+    print(type(lines))
+    print(lines)
+## output
+# <class 'list'>
+# ['This is an example to show how to open a file and read.', 'This is the second line of the text.']
+```
+
+### Opening for writing and updating
+
+### Deleting files
+
+## File types
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
