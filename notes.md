@@ -2507,6 +2507,111 @@ print(excel_book.sheet_names)
 - `file.xml`: XML is another strucutred data format wich looks like HTML.
 Use the `xml.etree.ElementTree` module to read it. See: <https://docs.python.org/2/library/xml.etree.elementtree.html>
 
+# Day 20: Python package manager `pip`
+
+## Installing packages
+
+Using `pip install packagename`.
+Tere, the package name are **case-insensitive**.
+
+- `numpy`: numeric python package
+  - a powerful N-dimensional array object
+  - sophisticated (broadcasting) functions
+  - tools for integrating C/C++ and Fortran code
+  - useful linear algebra, Fourier transform, and random number capabilities
+
+```bash
+pip install numpy
+```
+
+```py
+import numpy
+numpy.version.version
+
+lst = [1, 2, 3, 4, 5]
+np_arr = numpy.array(lst)
+
+lst * 2 # [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+np_arr * 2 # array([ 2,  4,  6,  8, 10]), support element wise operation
+np_arr + 2 # array([3, 4, 5, 6, 7])
+```
+
+The NumPy arrays store element of the **same** data type.
+
+- `pandas`: high-performance, easy-to-use data structures and data analysis tools
+
+```bash
+pip install pandas
+```
+
+```py
+import pandas
+```
+
+- `webbrowser`: help us to open any website (installed by default with Python 3)
+
+Useful when we want to open any number of websites at any time:
+
+```py
+import webbrowser # web browser module to open websites
+
+# list of urls: learning python
+url_lists = [
+    'https://github.com/Asabeneh/30-Days-Of-Python/tree/master', # the training
+    'https://github.com/Ning-L/30DaysOfPython/blob/main/notes.md', # my notes
+    'https://chatgpt.com/', # the super helpful learning partner
+]
+
+# opens the above list of websites in a different tab
+for url in url_lists:
+    webbrowser.open_new_tab(url)
+```
+
+- `requests`: allows to open a network connection and to implement CRUD (create, read, update and delete).
+
+```bash
+pip install requests
+```
+
+```py
+## example
+import requests
+url = 'https://restcountries.eu/rest/v2/all'  # countries api
+response = requests.get(url)  # opening a network and fetching a data
+print(response) # response object
+print(response.status_code)  # status code, success:200
+countries = response.json()
+print(countries[:1])  # we sliced only the first country, remove the slicing to see all countries
+```
+
+## Other operation on packages
+
+- Uninstall packages: `pip uninstall packagename`
+- Check the installed packages: `pip list`
+- Show package information: `pip show packagename` or `pip show --verbose packagename` (with more details)
+- Generate installed packages with their version, output is suitable to use as a requirement file: `pip freeze`
+- Create a package: A package is a folder containing one or more module files. A module can contain multiple objects, such as classes, functions, etc. Example: "mypackage" folder which contains:
+
+  - init.py: store package's content, it lets Python to recognize it as a package. (The `init.py` exposes specified resources from its modules to be imported to other python files. An empty `init.py` file makes all functions available when a package is imported. The `init.py` is essential for the folder to be recognized by Python as a package.)
+  - arithmetic.py
+  - greet.py
+  Then we can `from mypackage import arithmetics` and call `arithmetics.add_numbers(1, 2, 3, 5)`
+
+## Usefull packages
+
+- `SQLAlchemy` or `SQLObject` - Object oriented access to several different database systems
+- `django` and `flask` for web development
+- `beautifulsoup4` and `PyQuery` for HTML parser
+- `ElementTree` for XML processing
+- `requests`: send request to a server
+- data analysis, data science and ML:
+  - `NumPy`
+  - `Pandas`
+  - `SciPy`: ML library, contains modules for optimization, linear algebra, integration, image processing, and statistics.
+  - `Scikit-Learn`: it is NumPy and SciPy. It is considered as one of the best libraries for working with complex data.
+  - `TensorFlow`: ML pkg built by Google
+  - `Keras`: ML library
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
