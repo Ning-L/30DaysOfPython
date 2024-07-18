@@ -2371,9 +2371,141 @@ with open('./files/reading_file_example.txt') as f:
 
 ### Opening for writing and updating
 
+Use the mode "a" (appending) or "w" (overwriting) in the parameter "mode" of `open()`.
+
+```py
+with open('./files/reading_file_example.txt','a') as f:
+    f.write('This text has to be appended at the end')
+
+with open('./files/writing_file_example.txt','w') as f:
+    f.write('This text will be written in a newly created file')
+```
+
 ### Deleting files
 
+Use `remove` of `os` to remove a file.
+It's better to check existance, if not the case, remove will raise an error.
+
+```py
+import os
+if os.path.exists('./files/example.txt'):
+    os.remove('./files/example.txt')
+else:
+    print('The file does not exist')
+```
+
 ## File types
+
+- `file.txt`
+- `file.json` (a stringified Java object or a Python dictionary)
+
+```py
+# dictionary
+person_dct= {
+    "name":"Asabeneh",
+    "country":"Finland",
+    "city":"Helsinki",
+    "skills":["JavaScrip", "React","Python"]
+}
+
+# JSON: A string form a dictionary
+person_json = "{'name': 'Asabeneh', 'country': 'Finland', 'city': 'Helsinki', 'skills': ['JavaScrip', 'React', 'Python']}"
+
+# we use three quotes and make it multiple line to make it more readable
+person_json = '''{
+    "name":"Asabeneh",
+    "country":"Finland",
+    "city":"Helsinki",
+    "skills":["JavaScrip", "React","Python"]
+}'''
+```
+
+Use the `loads` method from the `json` module to change a JSON to a dictionary.
+
+```py
+import json
+# JSON
+person_json = '''{
+    "name": "Asabeneh",
+    "country": "Finland",
+    "city": "Helsinki",
+    "skills": ["JavaScrip", "React", "Python"]
+}'''
+# let's change JSON to dictionary
+person_dct = json.loads(person_json)
+print(type(person_dct))
+print(person_dct)
+print(person_dct['name'])
+
+## output
+# <class 'dict'>
+# {'name': 'Asabeneh', 'country': 'Finland', 'city': 'Helsinki', 'skills': ['JavaScrip', 'React', 'Python']}
+# Asabeneh
+```
+
+Use the `dumps` method from the `json` module to change a dictionary to a JSON.
+
+```py
+person_json = json.dumps(person_dct, indent=4) # indent could be 2, 4, 8. It beautifies the json
+print(type(person_json))
+# <class 'str'>
+## JSON does not have type, it is a string type.
+```
+
+We can also save our data as a json file using the `json.dump()`,
+it takes dictionary, outputfile, ensure_ascii and ident as parameters.
+
+```py
+import json
+# python dictionary
+person = {
+    "name": "Asabeneh",
+    "country": "Finland",
+    "city": "Helsinki",
+    "skills": ["JavaScrip", "React", "Python"]
+}
+with open('./files/json_example.json', 'w', encoding='utf-8') as f:
+    json.dump(person, f, ensure_ascii=False, indent=4)
+```
+
+- `file.csv`: store tabular data using the `csv` module
+
+```py
+## `csv_example.csv` contains following content:
+# "name","country","city","skills"
+# "Asabeneh","Finland","Helsinki","JavaScript"
+
+import csv
+with open('./files/csv_example.csv') as f:
+    csv_reader = csv.reader(f, delimiter=',') # w use, reader method to read csv
+    line_count = 0
+    for row in csv_reader:
+        if line_count == 0:
+            print(f'Column names are :{", ".join(row)}')
+            line_count += 1
+        else:
+            print(
+                f'\t{row[0]} is a teachers. He lives in {row[1]}, {row[2]}.')
+            line_count += 1
+    print(f'Number of lines:  {line_count}')
+
+## output:
+# Column names are :name, country, city, skills
+#         Asabeneh is a teacher. He lives in Finland, Helsinki.
+# Number of lines:  2
+```
+
+- `file.xlsx`: install the `xlrd` package to read excel file.
+
+```py
+import xlrd
+excel_book = xlrd.open_workbook('sample.xls')
+print(excel_book.nsheets)
+print(excel_book.sheet_names)
+```
+
+- `file.xml`: XML is another strucutred data format wich looks like HTML.
+Use the `xml.etree.ElementTree` module to read it. See: <https://docs.python.org/2/library/xml.etree.elementtree.html>
 
 # Attributes vs. Methods
 
