@@ -162,7 +162,7 @@ Python uses also the following keywords for comparison:
 - *is*: Returns `True` if both variables are (point to) the same object (`x is y`) (equivalent to `identical()` in R)
 - *is not*: Returns `True` if both variables are not the same object (`x is not y`)
 - *in*: Returns `True` if the queried list contains a certain item (`x in y`) (equivalent to `%in%` in R)
-- *not in*: Returns `True` if the queried list doesn't have a certain item (`x in y`)
+- *not in*: Returns `True` if the queried list doesn't have a certain item (`x not in y`)
 
 ## Logical operators
 
@@ -821,7 +821,7 @@ This principle is applied in the `popitem()` method of dictionaries in Python
   - Check the [Python 3 doc](https://docs.python.org/3/)
   - Interactive inspection with the `__doc__` attribute, ex: `str.split.__doc__`, `list.append.__doc__`, etc.
 
-- Chanage dictionary to list of tuples with the `items()` method: `dct.items()`
+- Change dictionary to list of tuples with the `items()` method: `dct.items()`
 - Clearing a dictionary with the `clear()` method: `dct.clear()`
 - Deleting a dictionary with `del` statement
 - Copy a dictionary with `copy()` method
