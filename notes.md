@@ -2612,11 +2612,279 @@ print(countries[:1])  # we sliced only the first country, remove the slicing to 
   - `TensorFlow`: ML pkg built by Google
   - `Keras`: ML library
 
+# Day 21: Classes and objects
+
+Python is an object oriented programming language.
+Everything in Python is an object, with its properties and methods.
+We initiate a class to create an object, the class is like an object constructor, it defines attributes and the behavoir of the object.
+The object represent its class.
+Everything in Python is an object of a class.
+
+## Creation of a class
+
+Use the keyword `class` to create a class,
+the class name should be **CamelCase**.
+
+```py
+# syntax
+class ClassName:
+    code goes here
+
+# example
+class Person:
+    pass
+
+print(Person)
+# <class '__main__.Person'>
+```
+
+## Creation of an object
+
+We can create an object by calling the class
+
+```py
+p = Person()
+print(p)
+# <__main__.Person object at 0x103e93fd0>
+```
+
+## Class constructor
+
+Use the built-in `init()` constructor function to make the class more useful,
+the `init` constructor has `self` parameter which is a reference to the current instance of the class. For example:
+
+```py
+class Person:
+    def __init__(self, name, age):
+        # self allows to attach parameter to the class
+        self.name = name # attribute
+        self.age = age   # attribute
+
+p = Person(name = "Abc", age = "25")
+print(p) # <__main__.Person object at 0x100ded730>
+print(p.name) # "Abc"
+print(p.age) # 25
+```
+
+## Object method
+
+Objects can have methods, the methods are functions which belongs to the object.
+
+```py
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def person_info(self): # method
+        return f"{self.name} is {self.age} years old"
+
+p = Person("Abc", 25)
+print(p.name) # Abc
+print(p.age) # 25
+print(p.person_info()) # 'Abc is 25 years old'
+```
+
+## Object default method
+
+We can dive default values for the parameters in the constructor.
+
+```py
+class Person:
+    def __init__(self, name = "Abc", age = 25):
+        self.name = name
+        self.age = age
+    def person_info(self): # method
+        return f"{self.name} is {self.age} years old"
+
+p1 = Person()
+p1.person_info() # 'Abc is 25 years old'
+
+p2 = Person("EDF", 27)
+p2.person_info() # 'EDF is 27 years old'
+```
+
+## Method to modify class default values
+
+```py
+class Person:
+    def __init__(self, name = "Abc", age = 25):
+        self.name = name
+        self.age = age
+        self.skills = []
+    def person_info(self): # method
+        return f"{self.name} is {self.age} years old"
+    def add_skill(self, skill):
+        self.skills.append(skill)
+
+p1 = Person()
+p1.person_info() # 'Abc is 25 years old'
+p1.add_skill('HTML')
+p1.add_skill('CSS')
+p1.add_skill('JavaScript')
+p1.skills # ['HTML', 'CSS', 'JavaScript']
+
+p2 = Person("EDF", 27)
+p2.person_info() # 'EDF is 27 years old'
+p2.skills # []
+```
+
+## Inheritance
+
+We can re-use parent class code.
+Inheritance allows us to define a class that inherits all the methods and properties from parent class.
+
+We don't need to call the `init` constructor in the child class,
+but we still have access to all the properties from the parent class.
+
+For example, let's create a "Student" class by inheriting from "Person" class:
+
+```py
+class Student(Person):
+    pass
+
+s1 = Student('Eyob', 30)
+s1.person_info() # 'Eyob is 30 years old'
+
+s2 = Student('ccc', 902)
+s2.person_info() # 'ccc is 902 years old'
+s2.add_skill("R")
+s2.add_skill("Markdown")
+s2.skills # ['R', 'Markdown']
+```
+
+If we do call the constructor, we can access the parent properties by calling `super()`.
+
+```py
+class Student(Person):
+    def __init__(self, name = "aaa", age = 10, gender = "unknown"):
+        self.gender = gender
+        super().__init__(name, age) # use `super()` to call the parent class's `__init__` method
+s3 = Student(gender = "female")
+s3.name # "aaa"
+s3.age # 10
+s3.gender # 'female"
+s3.person_info() # 'aaa is 10 years old'
+```
+
+## Overriding parent method
+
+We can add new method to the child or we can override the parent class methods by creating the same method name in the child class.
+
+```py
+class Student(Person):
+    def __init__(self, name = "aaa", age = 10, gender = "unknown"):
+        self.gender = gender
+        super().__init__(name, age) 
+    def person_info(self):
+        pronoun = "boy" if self.gender == "male" else "girl"
+        return f"{self.name} is a {self.age} years old {pronoun}."
+
+s3 = Student(gender = "female")
+s3.person_info()
+```
+
+## Another example
+
+Object-oriented programming (OOP) is a programming paradigm that uses "objects" to design applications and computer programs. Here’s an overview to help you understand the core concepts of OOP:
+
+### Key Concepts of OOP
+
+1. **Objects**: Objects are instances of classes that represent entities with attributes (data) and methods (functions or procedures) that operate on the data. For example, a `Car` object might have attributes like `color` and `model`, and methods like `start()` and `stop()`.
+
+2. **Classes**: A class is a blueprint for creating objects. It defines a set of attributes and methods that the created objects will have. For example, you might have a `Car` class that defines the properties and behaviors of a car.
+
+3. **Encapsulation**: Encapsulation is the concept of bundling data (attributes) and methods (functions) that operate on the data into a single unit or class. It also involves restricting direct access to some of the object's components, which is called information hiding. This helps in protecting the internal state of the object from unintended interference.
+
+4. **Inheritance**: Inheritance is a mechanism where a new class (child class) inherits attributes and methods from an existing class (parent class). This helps in reusing existing code and creating a hierarchy of classes. For example, you might have a `Vehicle` class that is inherited by the `Car` class and `Bike` class.
+
+5. **Polymorphism**: Polymorphism allows objects of different classes to be treated as objects of a common superclass. It also allows the same method to behave differently on different classes. For example, a method `draw()` might behave differently for objects of `Circle`, `Square`, and `Triangle` classes.
+
+6. **Abstraction**: Abstraction is the concept of hiding the complex implementation details and showing only the essential features of the object. It helps in reducing programming complexity and effort.
+
+### Examples in Python
+
+Here's a simple example to illustrate these concepts in Python:
+
+```py
+# Define a class (blueprint)
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make  # attribute
+        self.model = model  # attribute
+        self.year = year  # attribute
+        """
+        __init__ is use to initialize the attributes of the class
+        self is a keyword which refers to the current instance of the class being created
+        """
+
+    def start_engine(self):  # method
+        print(f"{self.year} {self.make} {self.model} engine started.")
+
+    def stop_engine(self):  # method
+        print(f"{self.year} {self.make} {self.model} engine stopped.")
+
+# Create an object (instance) of the class
+my_car = Car("Toyota", "Camry", 2020)
+
+# Access attributes
+print(my_car.make)  # Output: Toyota
+print(my_car.model)  # Output: Camry
+print(my_car.year)  # Output: 2020
+
+# Call methods
+my_car.start_engine()  # Output: 2020 Toyota Camry engine started.
+my_car.stop_engine()  # Output: 2020 Toyota Camry engine stopped.
+```
+
+### Examples in R
+
+Here's a simple example to illustrate these concepts in R using the S3 system:
+
+```r
+# Define a constructor function for a "Car" class (blueprint)
+Car <- function(make, model, year) {
+  obj <- list(make = make, model = model, year = year)
+  class(obj) <- "Car"
+  return(obj)
+}
+
+# Define a method to start the engine
+start_engine <- function(car) {
+  UseMethod("start_engine")
+}
+
+start_engine.Car <- function(car) {
+  cat(car$year, car$make, car$model, "engine started.\n")
+}
+
+# Define a method to stop the engine
+stop_engine <- function(car) {
+  UseMethod("stop_engine")
+}
+
+stop_engine.Car <- function(car) {
+  cat(car$year, car$make, car$model, "engine stopped.\n")
+}
+
+# Create an object (instance) of the class
+my_car <- Car("Toyota", "Camry", 2020)
+
+# Access attributes
+print(my_car$make)  # Output: Toyota
+print(my_car$model)  # Output: Camry
+print(my_car$year)  # Output: 2020
+
+# Call methods
+start_engine(my_car)  # Output: 2020 Toyota Camry engine started.
+stop_engine(my_car)  # Output: 2020 Toyota Camry engine stopped.
+```
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
 
-**Attributes** are *variables* that belong to an object. They hold data or state information about the object.
+- **Attributes** are *variables* that belong to an object. They hold data or state information about the object.
 
 ```py
 class Car:
@@ -2629,7 +2897,7 @@ my_car = Car('Toyota', 'Camry', 'blue')
 print(my_car.color)  # Accessing an attribute
 ```
 
-**Methods** are *functions* that belong to an object and define behaviors or actions that the object can perform. Methods can manipulate the object's attributes or perform computations.
+- **Methods** are *functions* that belong to an object and define behaviors or actions that the object can perform. Methods can manipulate the object's attributes or perform computations.
 
 ```py
 class Car:
