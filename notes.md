@@ -3243,6 +3243,314 @@ np.array(range(0, 11)) + 2
 - numpy arrays occupied less space than python lists
 - numpy arrays support boolean indexing (ex: `Z == 0`, `Z[Z > 1]`, `Z[Z == 1]`)
 
+# Day 25: `pandas` module
+
+Pandas adds data structures and tools designed to work with table-like data which is *Series* and *Data Frames*.
+
+`Pandas` provides tools for data manipulation:
+
+- reshaping
+- merging
+- sorting
+- slicing
+- aggregation
+- imputation.
+
+A *series* is a column and a *DataFrame* is a multidimensional table.
+
+## Series
+
+Pandas series can be created by numpy one dimensional array or a python list/dictionary.
+
+```py
+import pandas as pd
+import numpy as np
+
+nums = [1, 2, 3, 4, 5]
+s = pd.Series(nums) # with default index starts from 0
+print(s)
+# 0    1
+# 1    2
+# 2    3
+# 3    4
+# 4    5
+# dtype: int64
+
+s = pd.Series(nums, index = [1, 2, 3, 4, 5]) # with customized index
+print(s)
+# 1    1
+# 2    2
+# 3    3
+# 4    4
+# 5    5
+# dtype: int64
+
+fruits = ['Orange','Banana','Mango']
+fruits = pd.Series(fruits, index=list(range(len(fruits)+1))[1:]) # or index = [1, 2, 3]
+# 1    Orange
+# 2    Banana
+# 3     Mango
+# dtype: object
+
+"""
+In `pandas`, when a `Series` contains strings or mixed types, the dtype is "object".
+"""
+
+len(fruits) # 3
+
+fruits.index
+# Index([1, 2, 3], dtype='int64')
+fruits.values
+# array(['Orange', 'Banana', 'Mango'], dtype=object)
+
+dct = {'name':'Asabeneh','country':'Finland','city':'Helsinki'}
+pd.Series(dct)
+# name       Asabeneh
+# country     Finland
+# city       Helsinki
+# dtype: object
+
+# create a constant Series
+pd.Series(10, index = [1,2,3,1]) 
+# 1    10
+# 2    10
+# 3    10
+# 1    10
+
+"""
+the index can have duplicates, will not raise errors
+we can perform group by operation with it
+"""
+
+# linspace Series
+s = pd.Series(np.linspace(5, 20, 10)) # linspace(starting, end, items)
+print(s)
+
+```
+
+## DataFrame
+
+Can be created from list of lists, dictionary or a list of dictionaries.
+
+```py
+## from a list of lists
+data = [
+    ['Asabeneh', 'Finland', 'Helsink'], 
+    ['David', 'UK', 'London'],
+    ['John', 'Sweden', 'Stockholm']
+]
+df = pd.DataFrame(data, columns=['Names','Country','City'])
+print(df)
+#       Names  Country       City
+# 0  Asabeneh  Finland    Helsink
+# 1     David       UK     London
+# 2      John   Sweden  Stockholm
+
+
+## from a dictionary
+data = {'Name': ['Asabeneh', 'David', 'John'], 'Country':[
+    'Finland', 'UK', 'Sweden'], 'City': ['Helsiki', 'London', 'Stockholm']}
+pd.DataFrame(data)
+#       Names  Country       City
+# 0  Asabeneh  Finland    Helsink
+# 1     David       UK     London
+# 2      John   Sweden  Stockholm
+
+## from a list of dictionaries
+data = [
+    {'Name': 'Asabeneh', 'Country': 'Finland', 'City': 'Helsinki'},
+    {'Name': 'David', 'Country': 'UK', 'City': 'London'},
+    {'Name': 'John', 'Country': 'Sweden', 'City': 'Stockholm'}]
+pd.DataFrame(data)
+```
+
+### Modifying a DataFrame
+
+- create a new DataFrame
+
+```py
+import pandas as pd
+import numpy as np
+data = [
+    {"Name": "Asabeneh", "Country":"Finland","City":"Helsinki"},
+    {"Name": "David", "Country":"UK","City":"London"},
+    {"Name": "John", "Country":"Sweden","City":"Stockholm"}]
+df = pd.DataFrame(data)
+#        Name  Country       City
+# 0  Asabeneh  Finland   Helsinki
+# 1     David       UK     London
+# 2      John   Sweden  Stockholm
+```
+
+- add/remove columns
+Adding a column to a DataFrame is like to add a 'key' to a dictionary.
+
+```py
+weights = [74, 78, 69]
+df['Weight'] = weights
+df
+#        Name  Country       City  Weight
+# 0  Asabeneh  Finland   Helsinki      74
+# 1     David       UK     London      78
+# 2      John   Sweden  Stockholm      69
+
+df['Height'] = [173, 175, 169]
+#        Name  Country       City  Weight  Height
+# 0  Asabeneh  Finland   Helsinki      74     173
+# 1     David       UK     London      78     175
+# 2      John   Sweden  Stockholm      69     169
+```
+
+- modify existing columns
+
+```py
+df['Height'] = df['Height'] * 0.01
+#        Name  Country       City  Weight  Height
+# 0  Asabeneh  Finland   Helsinki      74    1.73
+# 1     David       UK     London      78    1.75
+# 2      John   Sweden  Stockholm      69    1.69
+```
+
+We can calculate BMI based on the weight and height.
+
+```py
+def calculate_bmi():
+    weights = df["Weight"]
+    heights = df["Height"]
+    bmi = []
+    for w,h in zip(weights, heights): # use zip to combine iterables
+        bmi.append(w/(h**2))
+    return bmi
+df["BMI"] = calculate_bmi()
+#        Name  Country       City  Weight  Height        BMI
+# 0  Asabeneh  Finland   Helsinki      74    1.73  24.725183
+# 1     David       UK     London      78    1.75  25.469388
+# 2      John   Sweden  Stockholm      69    1.69  24.158818
+```
+
+- formating DataFrame columns using the `round()` fonction
+
+```py
+df["BMI"] = round(df["BMI"], 1)
+df
+#        Name  Country       City  Weight  Height   BMI
+# 0  Asabeneh  Finland   Helsinki      74    1.73  24.7
+# 1     David       UK     London      78    1.75  25.5
+# 2      John   Sweden  Stockholm      69    1.69  24.2
+```
+
+- change data type of column values
+
+Use `astype()` to change data type:
+
+```py
+df["current_year"] = pd.Series(2024, index=[0, 1, 2])
+df["birth_year"] = ['1769', '1985', '1990']
+df['birth_year'].dtype # dtype('O'), object
+
+df['birth_year'] = df['birth_year'].astype("int")
+df['birth_year'].dtype # dtype('int64')
+
+df["age"] = df["current_year"] - df["birth_year"] 
+df
+#        Name  Country       City  ...  current_year  birth_year  age
+# 0  Asabeneh  Finland   Helsinki  ...          2024        1769  255
+# 1     David       UK     London  ...          2024        1985   39
+# 2      John   Sweden  Stockholm  ...          2024        1990   34
+
+# [3 rows x 9 columns]
+
+# repalce the first age by the average
+df.at[0, "age"] = np.mean(df["age"][1:])
+## or 
+df.loc[0, "age"] = np.mean(df["age"][1:])
+"""
+both raise warning about data incompatibility as original column is int,
+but the replace value is a float,
+consider change the type before add new value
+"""
+df["age"] = df["current_year"] - df["birth_year"] 
+df["age"] = df["age"].astype("float")
+df.at[0, "age"] = np.mean(df["age"][1:])
+```
+
+- Boolean indexing
+
+```py
+df[df["BMI"] > 24.5]
+#        Name  Country      City  ...  current_year  birth_year   age
+# 0  Asabeneh  Finland  Helsinki  ...          2024        1769  36.5
+# 1     David       UK    London  ...          2024        1985  39.0
+
+# [2 rows x 9 columns]
+```
+
+## Reading CSV using `pandas`
+
+Using example from: `curl -O https://raw.githubusercontent.com/Asabeneh/30-Days-Of-Python/master/data/weight-height.csv` (stored in `data/`)
+
+```py
+df = pd.read_csv("data/weight-height.csv")
+df.head() # show the first five rows
+#   Gender     Height      Weight
+# 0   Male  73.847017  241.893563
+# 1   Male  68.781904  162.310473
+# 2   Male  74.110105  212.740856
+# 3   Male  71.730978  220.042470
+# 4   Male  69.881796  206.349801
+df.tail(n = 2) # show last two rows
+#       Gender     Height      Weight
+# 9998  Female  69.034243  163.852461
+# 9999  Female  61.944246  113.649103
+
+df.shape # data dimension
+# (10000, 3)
+
+df.columns # print all the columns
+# Index(['Gender', 'Height', 'Weight'], dtype='object')
+
+# get a specific column, it's a Series
+heights = df['Height'] # this is now a series
+# 0       73.847017
+# 1       68.781904
+# 2       74.110105
+# 3       71.730978
+# 4       69.881796
+#           ...    
+# 9995    66.172652
+# 9996    67.067155
+# 9997    63.867992
+# 9998    69.034243
+# 9999    61.944246
+# Name: Height, Length: 10000, dtype: float64
+
+df.describe(include = "all") # give stats info regardless data type
+#        Gender        Height        Weight
+# count   10000  10000.000000  10000.000000
+# unique      2           NaN           NaN
+# top      Male           NaN           NaN
+# freq     5000           NaN           NaN
+# mean      NaN     66.367560    161.440357
+# std       NaN      3.847528     32.108439
+# min       NaN     54.263133     64.700127
+# 25%       NaN     63.505620    135.818051
+# 50%       NaN     66.318070    161.212928
+# 75%       NaN     69.174262    187.169525
+# max       NaN     78.998742    269.989699
+
+df.info()
+# <class 'pandas.core.frame.DataFrame'>
+# RangeIndex: 10000 entries, 0 to 9999
+# Data columns (total 3 columns):
+#  #   Column  Non-Null Count  Dtype  
+# ---  ------  --------------  -----  
+#  0   Gender  10000 non-null  object 
+#  1   Height  10000 non-null  float64
+#  2   Weight  10000 non-null  float64
+# dtypes: float64(2), object(1)
+# memory usage: 234.5+ KB
+```
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
