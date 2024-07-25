@@ -2927,6 +2927,322 @@ pip freeze
 deactivate # the (venv) dispeared before the path
 ```
 
+# Days 24: Modules `statistics` and `numpy`
+
+- `statistics` module provides fcts for calculating mathematical stats of numerical data, aimed at graphing and scitific calculators.
+
+- `numpy` is the core library for scientific computing in Python. It provides high performance multidimensional array object and tools for working with arrays.
+
+```py
+import numpy as np
+python_list = [1, 2, 3, 4, 5]
+print(type(python_list)) # # <class 'list'>
+
+"""Creation of numpy arrays"""
+## int array
+numpy_array_from_list = np.array(python_list)
+print(type(numpy_array_from_list)) # <class 'numpy.ndarray'>
+print(numpy_array_from_list) # array([1, 2, 3, 4, 5])
+
+## float array
+numy_array_from_list2 = np.array(python_list, dtype = float)
+print(numy_array_from_list2) # array([1., 2., 3., 4., 5.])
+
+## boolean array
+numpy_bool_array = np.array([0, 1, -1, 0, 0], dtype = bool)
+print(numpy_bool_array) # array([False,  True,  True, False, False])
+
+# Create multidimensional numpy array
+## multi-dimensional array from list
+two_dimensional_list = [[0,1,2], [3,4,5], [6,7,8]]
+numpy_two_dimensional_list = np.array(two_dimensional_list)
+print(type (numpy_two_dimensional_list)) #  <class 'numpy.ndarray'>
+print(numpy_two_dimensional_list)
+# [[0 1 2]
+#  [3 4 5]
+#  [6 7 8]]
+
+## multi-dimensional array to list
+np_to_list = numpy_array_from_list.tolist()
+print(type(np_to_list)) #  <class 'list'>
+print('one dimensional array:', np_to_list) # [1, 2, 3, 4, 5]
+
+# Create numpy array from tuple
+python_tuple = (1, 2, 3, 4, 5)
+numpy_array_from_tuple = np.array(python_tuple)
+print(type (numpy_array_from_tuple)) # <class 'numpy.ndarray'>
+print('numpy_array_from_tuple: ', numpy_array_from_tuple) # numpy_array_from_tuple:  [1 2 3 4 5]
+
+"""
+The `shape` method provides the array dimension as a tuple, with nrow and ncol.
+If it's one dim array, it returns the size of the array.
+"""
+nums = np.array([1, 2, 3, 4, 5])
+print(nums.shape) # (5, )
+
+three_by_four_array = np.array([[0, 1, 2, 3],
+    [4,5,6,7],
+    [8,9,10, 11]])
+print(three_by_four_array.shape) # (3, 4)
+
+"""
+The data types of numpy array are:
+ str, int, float, complex, bool, list, None
+Use the method `dtype` to get access of it.
+"""
+int_lists = [-3, -2, -1, 0, 1, 2,3]
+int_array = np.array(int_lists)
+float_array = np.array(int_lists, dtype=float)
+print(int_array.dtype) # int64
+print(float_array.dtype) # float64
+
+"""
+Use `size` to know the total nb of items in a numpy array
+"""
+numpy_array_from_list = np.array([1, 2, 3, 4, 5])
+two_dimensional_list = np.array(
+    [[0, 1, 2],
+     [3, 4, 5],
+     [6, 7, 8]]
+)
+print(numpy_array_from_list.size) # 5
+print(two_dimensional_list.size)  # 9
+
+"""
+Numpy array allows to do math operation without looping.
++, -, *, /, %(modules), //(floor division), *(exponetial)
+"""
+print(numpy_array_from_list // 3) # array([0, 0, 1, 1, 1])
+print(numpy_array_from_list % 3) # array([1, 2, 0, 1, 2])
+
+"""
+We can convert data type using the "dtype" parameter or with `astype()` method
+"""
+numpy_float_list = np.array([1,2,3,4], dtype = 'float')
+print(numpy_float_list)
+# array([1., 2., 3., 4.])
+
+print(np.array([-3, -2, 0, 1,2,3], dtype='bool'))
+# array([True, True, False, True, True, True])
+
+numpy_float_list.astype("int") # array([1, 2, 3, 4])
+numpy_float_list.astype("str") # array(['1.0', '2.0', '3.0', '4.0'], dtype='<U32')
+
+"""
+Getting items from a numpy array
+"""
+two_dimension_array = np.array([[1,2,3],[4,5,6], [7,8,9]])
+first_row = two_dimension_array[0]
+print('First row:', first_row) # First row: [1 2 3]
+first_column = two_dimension_array[:,0] # First column: [1 4 7]
+## the colon `:` used to indicate slicing, it selects all elements along that axis. Here, before the comma, it means select all rows
+## the comma `,` separates the dim in the array indexing, everything before applies to rows and everything after applies to the columns
+
+"""
+Slicing array with the index
+"""
+two_dimension_array[1:3, 0:2]
+# array([[4, 5],
+#        [7, 8]])
+
+"""
+Reverse the whole array
+"""
+two_dimension_array[::-1, ::-1]
+# array([[9, 8, 7],
+#        [6, 5, 4],
+#        [3, 2, 1]])
+
+"""
+Reverse the rows
+"""
+two_dimension_array[::-1, :] # or two_dimension_array[::-1, ]
+# array([[7, 8, 9],
+#        [4, 5, 6],
+#        [1, 2, 3]])
+
+"""
+To create array of ones or zeros
+"""
+np.ones((3,3),dtype=int,order='C') # order 'C': array will be stored in memory in row-major order, 'F' is column-major order
+# array([[1 1 1]
+#        [1 1 1]
+#        [1 1 1]])
+np.zeros((3,3),dtype=int,order='C')
+# array([[0, 0, 0],
+#         [0, 0, 0],
+#         [0, 0, 0]])
+
+"""
+Reshape arrays with `numpy.reshape()` and `numpy.flatten()`
+"""
+first_shape  = np.array([(1,2,3), (4,5,6)])
+print(first_shape)
+# array([[1 2 3]
+#        [4 5 6]])
+reshaped = first_shape.reshape(3,2)
+print(reshaped)
+# array([[1, 2],
+#        [3, 4],
+#        [5, 6]])
+first_shape.flatten()
+# array([1, 2, 3, 4, 5, 6])
+
+"""
+Horizontal or vertical append arrays
+"""
+np_list_one = np.array([1,2,3])
+np_list_two = np.array([4,5,6])
+print(np_list_one + np_list_two) # [5 7 9]
+np.hstack((np_list_one, np_list_two))
+# array([1, 2, 3, 4, 5, 6])
+np.vstack((np_list_one, np_list_two)) 
+# array([[1, 2, 3],
+#        [4, 5, 6]])
+
+"""
+Generate random numbers
+"""
+## random integers
+random_int = np.random.randint(0, 11, size = 4) # 4 random numbers between 0 and 10
+random_int = np.random.randint(0, 11, size = (3, 3)) # 3 rows and 3 cols array of random number between 0 and 10
+
+## random floats
+random_float = np.random.random(5) # generate 5 random floats between 0 and 1 (not included)
+
+## random number following the normal distribution
+# np.random.normal(mu, sigma, size)
+normal_array = np.random.normal(0, 1, 10) # or np.random.randn()
+
+## random choice
+print(np.random.choice(['a', 'e', 'i', 'o', 'u'], size=10))
+# ['u' 'o' 'o' 'i' 'e' 'e' 'u' 'o' 'u' 'a']
+
+"""
+The `matrix` class in NumPy
+"""
+four_by_four_matrix = np.matrix(np.ones((4,4), dtype=float))
+four_by_four_matrix
+# matrix([[1., 1., 1., 1.],
+#         [1., 1., 1., 1.],
+#         [1., 1., 1., 1.],
+#         [1., 1., 1., 1.]])
+np.asarray(four_by_four_matrix)[2] = 2 # change value for the 3rd row
+# or
+four_by_four_matrix[2] = 2 # change value for the 3rd row
+four_by_four_matrix
+# matrix([[1., 1., 1., 1.],
+#         [1., 1., 1., 1.],
+#         [2., 2., 2., 2.],
+#         [1., 1., 1., 1.]])
+
+"""
+Create evenly spaced array over a specified interval:
+`arrange()`, `linspace()` and `logspace` methods
+"""
+# numpy.arange(start, stop, step)
+whole_numbers = np.arange(0, 10, 1)
+whole_numbers
+# array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9])
+
+np.linspace(1.0, 5.0, num=5, endpoint = False) # even spaced numbers on a log scale
+# array([1. , 1.8, 2.6, 3.4, 4.2])
+
+np.logspace(1.0, 5.0, num=5) # even spaced numbers on a log scale
+# array([1.e+01, 1.e+02, 1.e+03, 1.e+04, 1.e+05])
+```
+
+`whole_numbers.itemsize` provide size in bytes.
+
+NumPy provides lots of useful stat fct as the min, max, mean, med, percentile, std, variance, etc.
+It has also functions like `amin`, `amax` to find min or max value of an array along a specific axis. (axis = 0 finds the min valu along the columns, axis = 1 applies for the rows)
+
+```py
+print('Column with minimum: ', np.amin(two_dimension_array,axis=0))
+# Column with minimum:  [1 2 3]
+print('Column with maximum: ', np.amax(two_dimension_array,axis=0))
+# Column with maximum:  [7 8 9]
+print('Row with minimum: ', np.amin(two_dimension_array,axis=1))
+# Row with minimum:  [1 4 7]
+```
+
+To create repeating sequence, we can use `tile()` or `repeat()`.
+
+```py
+a = [1,2,3]
+
+# Repeat whole of 'a' twice
+print('Tile:   ', np.tile(a, 2))
+# Tile:    [1 2 3 1 2 3]
+
+# Repeat each element of 'a' twice
+print('Repeat: ', np.repeat(a, 2))
+# Repeat:  [1 1 2 2 3 3]
+```
+
+The function `scipy.stats.mode` provides the mode of a sequence.
+
+```py
+"""
+`np.dot` performs dot product (product of two arrays)
+"""
+f = np.array([1,2,3])
+g = np.array([4,5,3])
+### 1*4+2*5 + 3*6
+np.dot(f, g)  # 23
+
+"""
+`np.matmul` performs matrix product of two arrays
+"""
+h = [[1,2],[3,4]]
+i = [[5,6],[7,8]]
+### 1*5+2*7=19 (position 0, 0)
+### 1*6+2*8=22 (position 0, 1)
+### 3*5+4*7=43 (position 1, 0)
+### 3*6+4*8=50 (position 1, 1)
+np.matmul(h, i)
+# array([[19, 22],
+#        [43, 50]])
+
+"""
+deteminant of a matrix using `np.linalg.det()`
+"""
+mat = np.matmul(h, i)
+np.linalg.det(mat)
+# p.float64(4.000000000000017)
+
+Z = np.zeros((8,8)) # an 8*8 array filled with zeros
+Z[1::2,::2] = 1
+# 1::2 means start at index 1 and take every second row, so rows 2,4,6,8
+# ::2 means star ad index 0 and take every second column, so cols 1,3,5,7
+# all theses positions are affected to 1
+Z[::2,1::2] = 2
+# start at index 0 and take every second row, so rows 1,3,5,7
+# start at index 1 and take every second col, so cols 2,4,6,8
+# change thses postions to 2
+# array([[0., 2., 0., 2., 0., 2., 0., 2.],
+#        [1., 0., 1., 0., 1., 0., 1., 0.],
+#        [0., 2., 0., 2., 0., 2., 0., 2.],
+#        [1., 0., 1., 0., 1., 0., 1., 0.],
+#        [0., 2., 0., 2., 0., 2., 0., 2.],
+#        [1., 0., 1., 0., 1., 0., 1., 0.],
+#        [0., 2., 0., 2., 0., 2., 0., 2.],
+#        [1., 0., 1., 0., 1., 0., 1., 0.]])
+
+
+[ x + 2 for x in range(0, 11)]
+# equivalent
+np.array(range(0, 11)) + 2
+```
+
+## Summary
+
+- array support vectorized operations while list doesn't
+- we can the the array size by creating a new one or overwrite it
+- every array has only one data type for all items
+- numpy arrays occupied less space than python lists
+- numpy arrays support boolean indexing (ex: `Z == 0`, `Z[Z > 1]`, `Z[Z == 1]`)
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
