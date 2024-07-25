@@ -2880,6 +2880,53 @@ start_engine(my_car)  # Output: 2020 Toyota Camry engine started.
 stop_engine(my_car)  # Output: 2020 Toyota Camry engine stopped.
 ```
 
+# Day 23: Virtual environment
+
+Virtual environment helps to create an isolated environment,
+which helps us to avoid conflicts in dependencies across projects.
+Use "virtualenv" to have access only packages which are specific for that project. (like "renv" in R)
+
+For example:
+
+```bash
+# first install virtualenv
+pip install virtualenv
+
+# create a test folder called "flask_project" inside the "30DaysOfPython"
+cd ~/Desktop/30DaysOfPython
+mkdir flask_project
+cd flask_project
+
+# create a virtual environment called "venv"
+virtualenv venv
+ls venv # check if the venv was created
+
+# activate the virtual environment
+soucre venv/bin/activate
+# then the project directory is start with (venv)
+
+# check available pkgs by pip freeze, nothing installed
+pip freeze
+
+# then install flask pkg in this project
+pip install flask
+
+# recheck installed pkgs
+pip freeze
+# blinker==1.8.2
+# click==8.1.7
+# Flask==3.0.3
+# importlib_metadata==8.2.0
+# itsdangerous==2.2.0
+# Jinja2==3.1.4
+# MarkupSafe==2.1.5
+# Werkzeug==3.0.3
+# zipp==3.19.2
+
+# to deactivate project
+deactivate # the (venv) dispeared before the path
+```
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
