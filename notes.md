@@ -3551,6 +3551,36 @@ df.info()
 # memory usage: 234.5+ KB
 ```
 
+## Operations on DataFrame
+
+```py
+## subset columns
+df[['Name', 'Country', 'City']]
+#        Name  Country       City
+# 0  Asabeneh  Finland   Helsinki
+# 1     David       UK     London
+# 2      John   Sweden  Stockholm
+
+## find unique values of a column
+df["Name"].unique()
+
+## access to a specific cell
+df.iloc[1,2] # "London", 2nd row and the 3rd col
+df.loc[1, "City"] # "London", 2nd row and the 3rd col
+
+df.iloc[1,2:4]
+# City      London
+# Weight        78
+# Name: 1, dtype: object
+
+## comparison
+df["age"] > 35
+df[df["age"] > 35] # subset rows having age > 35
+
+## save to CSV
+df.to_csv("new_file.csv")
+```
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
