@@ -2324,7 +2324,7 @@ f.close()
 # This is an
 ```
 
-- `readline()`: read only the 1st line
+- `readline()`: read only the 1st line, or read the next line as a string
 
 ```py
 line = f.readline()
@@ -2336,7 +2336,7 @@ f.close()
 # This is an example to show how to open a file and read.
 ```
 
-- `readlines()`: read all the text line by line and **returns a list of lines**
+- `readlines()`: reads all lines as a **list**
 
 ```py
 lines = f.readlines()
@@ -2379,6 +2379,9 @@ with open('./files/reading_file_example.txt','a') as f:
 
 with open('./files/writing_file_example.txt','w') as f:
     f.write('This text will be written in a newly created file')
+
+# file.write(content) # writes a string to the file
+# file.writelines(lines) # writes a list of strings to the file
 ```
 
 ### Deleting files
@@ -3008,6 +3011,10 @@ two_dimensional_list = np.array(
 print(numpy_array_from_list.size) # 5
 print(two_dimensional_list.size)  # 9
 
+""" `ndim` gives the number of dimension """
+numpy_array_from_list.ndim # 1
+two_dimensional_list.ndim # 2
+
 """
 Numpy array allows to do math operation without looping.
 +, -, *, /, %(modules), //(floor division), *(exponetial)
@@ -3044,6 +3051,12 @@ Slicing array with the index
 two_dimension_array[1:3, 0:2]
 # array([[4, 5],
 #        [7, 8]])
+
+""" change array element """
+numpy_array_from_list[0] = 11
+# array([11,  2,  3,  4,  5])
+numpy_array_from_list[1:3] = 22, 33
+# array([11, 22, 33,  4,  5])
 
 """
 Reverse the whole array
@@ -3155,15 +3168,19 @@ np.logspace(1.0, 5.0, num=5) # even spaced numbers on a log scale
 `whole_numbers.itemsize` provide size in bytes.
 
 NumPy provides lots of useful stat fct as the min, max, mean, med, percentile, std, variance, etc.
-It has also functions like `amin`, `amax` to find min or max value of an array along a specific axis. (axis = 0 finds the min valu along the columns, axis = 1 applies for the rows)
+It has also functions like `amin`, `amax` to find min or max value of an array along a specific axis. (axis = 0 finds the min value along the columns, axis = 1 applies for the rows)
 
 ```py
-print('Column with minimum: ', np.amin(two_dimension_array,axis=0))
+array_2d = np.array([[1,7,3],[4,2,6], [9,8,5]])
+# array([[1, 7, 3],
+#        [4, 2, 6],
+#        [9, 8, 5]])
+print('Column with minimum: ', np.amin(array_2d, axis = 0)) #min of each column
 # Column with minimum:  [1 2 3]
-print('Column with maximum: ', np.amax(two_dimension_array,axis=0))
-# Column with maximum:  [7 8 9]
-print('Row with minimum: ', np.amin(two_dimension_array,axis=1))
-# Row with minimum:  [1 4 7]
+print('Column with maximum: ', np.amax(array_2d, axis = 0)) # max of each column
+# Column with maximum:  [9 8 6]
+print('Row with minimum: ', np.amin(array_2d, axis = 1)) # min of each row
+# Row with minimum:  [1 2 5]
 ```
 
 To create repeating sequence, we can use `tile()` or `repeat()`.
@@ -3183,6 +3200,26 @@ print('Repeat: ', np.repeat(a, 2))
 The function `scipy.stats.mode` provides the mode of a sequence.
 
 ```py
+u = [0, 1]
+v = [1, 0]
+
+### addition using python lists
+z = []
+for n,m in zip(u, v):
+    z.append(n+m)
+
+### addtion using np array
+z = np.array(u) + np.array(v)
+
+y = [1, 2]
+### scalar addition using python lists
+z = []
+for n in y:
+    z.append(n * 2)
+
+### scalar addition using np array
+z = np.array(y) * 2
+
 """
 `np.dot` performs dot product (product of two arrays)
 """
@@ -3554,6 +3591,9 @@ df.info()
 ## Operations on DataFrame
 
 ```py
+# dataframe_name["column_name"] # Accesses single column
+# dataframe_name[["column1", "column2"]] # Accesses multiple columns
+
 ## subset columns
 df[['Name', 'Country', 'City']]
 #        Name  Country       City
@@ -3563,6 +3603,35 @@ df[['Name', 'Country', 'City']]
 
 ## find unique values of a column
 df["Name"].unique()
+
+## `drop()` method to remove specific rows or columns,
+# axis=1 indicates columns. axis=0 indicates rows.
+dataframe_name.drop(["column1", "column2"], axis=1, inplace=True)
+dataframe_name.drop(index=[row1, row2], axis=0, inplace=True)
+
+## `dropna`() removes rows with missing NaN values from the DataFrame
+dataframe_name.dropna(axis=0, inplace=True)
+
+## `duplicated()` duplicate or repetitive values or records within a data set.
+dataframe_name.duplicated()
+
+## condition filtering
+# filtered_df = dataframe_name[(Conditional_statements)]
+filtered_df = df[(df["age"] > 30) & (df["salary"] < 50000)]
+
+## `groupby()` slice df into groups based on criteria
+# grouped = dataframe_name.groupby(
+#     by, axis=0, level=None, as_index=True,
+#     sort=True, group_keys=True, squeeze=False, observed=False, dropna=True)
+grouped = df.groupby(["category", "region"]).agg({"sales": "sum"})
+
+## `pandas.merge()` merge two df
+merged_df = pd.merge(df1, df2, on=["column1", "column2"])
+
+## `replace()` replaces specific values in a column with new values.
+dataframe_name["column_name"].replace(old_value, new_value, inplace=True)
+df["status"].replace("In Progress", "Active", inplace=True)
+
 
 ## access to a specific cell
 df.iloc[1,2] # "London", 2nd row and the 3rd col
