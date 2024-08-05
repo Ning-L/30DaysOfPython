@@ -1271,7 +1271,8 @@ we can use the rename function directly: `fullname()`
 - `statistics` module: provides functions for mathematical statistics of numeric data.
 
     ```py
-    from statistics import * # importing all the statistics modules
+    from statistics import * # importing all the statistics modules,
+    # but not recommended as "*" create ambiguity for functions available in the environment
     ages = [20, 20, 4, 24, 25, 22, 26, 20, 23, 22, 26]
     print(mean(ages))       # ~22.9
     print(median(ages))     # 23
@@ -2049,6 +2050,9 @@ def packing_person_info(**kwargs):
     for key in kwargs:
         print(f"{key} = {kwargs[key]}")
     return kwargs
+"""
+'**kwargs' (equivalent to '...' in R) which captures the extra arguments and stores them as a dictionary
+"""
 
 print(packing_person_info(name="Asabeneh", ountry="Finland", city="Helsinki", age=250))
 ## output
@@ -3723,3 +3727,25 @@ Sure, here is the table with explanations added as the second column:
 ## PEP 8 - Style guide for Python code
 
 <https://peps.python.org/pep-0008/>
+
+# Unit tests
+
+To automate the tests, we can use the [unittest](https://docs.python.org/3/library/unittest.html) package.
+The idea is that in a controlled framework (we know the input and
+as the designer of the function we know the output or,
+at least, the properties of the output) we can test the output of a function.
+
+The canonical test structure is as follows:
+
+```py
+import unittest
+
+def fun(x):
+    return x + 1
+
+class MyTest(unittest.TestCase):
+    def test(self):
+        self.assertEqual(fun(3), 4)
+```
+
+The equivalent R code would be `testthat::expect_equal(fun(3), 4)`.
