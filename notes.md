@@ -3019,6 +3019,20 @@ print(numy_array_from_list2) # array([1., 2., 3., 4., 5.])
 numpy_bool_array = np.array([0, 1, -1, 0, 0], dtype = bool)
 print(numpy_bool_array) # array([False,  True,  True, False, False])
 
+## logic functions in Numpy
+# count_nonzero(a, axis=None, *, keepdims=False)
+# isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+y = np.array([np.nan, 0, 1])
+np.count_nonzero(y) # 2
+np.isnan(y) # array([ True, False, False])
+
+np.random.seed(123)
+x = np.random.normal(0, size=(3, 4))
+x.shape # (3, 4), so axis 0 refers to rows (column-wise) and axis 1 refers to columns (row-wise)
+np.any(x > 0) # check if the 2d array has at least one pos value
+np.any(x > 0, axis = 0) # check if the 2d array has at least one pos value along rows
+np.any(x > 0, axis = 1) # check if the 2d array has at least one pos value along cols
+
 # Create multidimensional numpy array
 ## multi-dimensional array from list
 two_dimensional_list = [[0,1,2], [3,4,5], [6,7,8]]
@@ -3139,7 +3153,7 @@ two_dimension_array[::-1, :] # or two_dimension_array[::-1, ]
 #        [1, 2, 3]])
 
 """
-To create array of ones or zeros
+To create array of ones, zeros or a specified number
 """
 np.ones((3,3),dtype=int,order='C') # order 'C': array will be stored in memory in row-major order, 'F' is column-major order
 # array([[1 1 1]
@@ -3150,10 +3164,22 @@ np.zeros((3,3),dtype=int,order='C')
 #         [0, 0, 0],
 #         [0, 0, 0]])
 
+np.full((2, 3), 3.14)
+# array([[3.14, 3.14, 3.14],
+#        [3.14, 3.14, 3.14]])
+
+"""
+To create an identity matrix
+"""
+np.eye(3)
+# array([[1., 0., 0.],
+#        [0., 1., 0.],
+#        [0., 0., 1.]])
+
 """
 Reshape arrays with `numpy.reshape()` and `numpy.flatten()`
 """
-first_shape  = np.array([(1,2,3), (4,5,6)])
+first_shape = np.array([(1,2,3), (4,5,6)])
 print(first_shape)
 # array([[1 2 3]
 #        [4 5 6]])
@@ -3166,6 +3192,26 @@ first_shape.flatten()
 # array([1, 2, 3, 4, 5, 6])
 
 """
+Transpose arrays with `x.T` (method) or `numpy.transpose()` (function)
+"""
+first_shape.T
+# array([[1, 4],
+#        [2, 5],
+#        [3, 6]])
+np.transpose(first_shape)
+# array([[1, 4],
+#        [2, 5],
+#        [3, 6]])
+
+
+"""
+Add, insert, delete elements in arrays
+"""
+np.append(x, [1,2]) # add 1 and 2 at the end of the array
+np.insert(x, [1,2], 99) # insert 99 to the positions 1 and 2
+np.delete(x, [0,3]) # delete elements at positions 0 and 3
+
+"""
 Horizontal or vertical append arrays
 """
 np_list_one = np.array([1,2,3])
@@ -3176,6 +3222,32 @@ np.hstack((np_list_one, np_list_two))
 np.vstack((np_list_one, np_list_two)) 
 # array([[1, 2, 3],
 #        [4, 5, 6]])
+
+## or np.concatenate()
+np.concatenate((np_list_one, np_list_two))
+# array([1, 2, 3, 4, 5, 6])
+
+"""
+Sorting or partial sorting on an array
+"""
+x = np.array([7, 2, 3, 1, 6, 0, 4])
+np.sort(x)
+# array([0, 1, 2, 3, 4, 6, 7])
+
+np.partition(x, 5)
+# array([0, 1, 3, 2, 4, 6, 7])
+# partitions the array such that the element at index 5 (value "6") is in its sorted position,
+# and all elements before index 5 are less than or equal to it,
+# and all elements after index 5 are greater than or equal to it.
+# Useful when we don't need to sort the entire array,
+# such as finding the k-th smallest/biggest elements
+k = 3
+kth_smallest = np.partition(x, k)[k]
+print(f"The {k+1}th smallest element is: {kth_smallest}") # The 4th smallest element is: 3
+
+# finding the top-k elements
+top_k_smallest = np.partition(x, k)[:k]
+print(f"The top {k} smallest elements are: {top_k_smallest}") # The top 3 smallest elements are: [0 1 2]
 
 """
 Generate random numbers
@@ -3190,6 +3262,10 @@ random_float = np.random.random(5) # generate 5 random floats between 0 and 1 (n
 ## random number following the normal distribution
 # np.random.normal(mu, sigma, size)
 normal_array = np.random.normal(0, 1, 10) # or np.random.randn()
+
+## random number following the uniform distribution
+# uniform(low=0.0, high=1.0, size=None)
+uniform_array = np.random.uniform(0, 1, 3)
 
 ## random choice
 print(np.random.choice(['a', 'e', 'i', 'o', 'u'], size=10))
@@ -3232,7 +3308,7 @@ np.logspace(1.0, 5.0, num=5) # even spaced numbers on a log scale
 `whole_numbers.itemsize` provide size in bytes.
 
 NumPy provides lots of useful stat fct as the min, max, mean, med, percentile, std, variance, etc.
-It has also functions like `amin`, `amax` to find min or max value of an array along a specific axis. (axis = 0 finds the min value along the columns, axis = 1 applies for the rows)
+It has also functions like `amin`, `amax` to find min or max value of an array along a specific axis. (axis = 0 finds the min value along the rows, axis = 1 applies for the columns)
 
 ```py
 array_2d = np.array([[1,7,3],[4,2,6], [9,8,5]])
@@ -3331,7 +3407,7 @@ Z[::2,1::2] = 2
 #        [1., 0., 1., 0., 1., 0., 1., 0.]])
 
 
-[ x + 2 for x in range(0, 11)]
+[x + 2 for x in range(0, 11)]
 # equivalent
 np.array(range(0, 11)) + 2
 ```
@@ -3669,7 +3745,8 @@ df[['Name', 'Country', 'City']]
 df["Name"].unique()
 
 ## `drop()` method to remove specific rows or columns,
-# axis=1 indicates columns. axis=0 indicates rows.
+# axis = 0: by column = column-wise = along the rows
+# axis = 1: by row = row-wise = along the columns
 dataframe_name.drop(["column1", "column2"], axis=1, inplace=True)
 dataframe_name.drop(index=[row1, row2], axis=0, inplace=True)
 
