@@ -2051,7 +2051,8 @@ def packing_person_info(**kwargs):
         print(f"{key} = {kwargs[key]}")
     return kwargs
 """
-'**kwargs' (equivalent to '...' in R) which captures the extra arguments and stores them as a dictionary
+'**kwargs' (abbr for keyword arguments, equivalent to '...' in R),
+which captures the extra arguments and stores them as a dictionary
 """
 
 print(packing_person_info(name="Asabeneh", ountry="Finland", city="Helsinki", age=250))
@@ -3749,3 +3750,20 @@ class MyTest(unittest.TestCase):
 ```
 
 The equivalent R code would be `testthat::expect_equal(fun(3), 4)`.
+
+# `*args` and `**kwargs`
+
+- `*args`: Used for passing a variable number of positional arguments; treated as a tuple.
+- `**kwargs`: Used for passing a variable number of keyword arguments; treated as a dictionary.
+
+```py
+def print_args_kwargs(*args, **kwargs):
+    print("Positional arguments:", args)
+    print("Keyword arguments:", kwargs)
+
+# Call the function with both positional and keyword arguments
+print_args_kwargs(1, 2, 3, name="Alice", age=30, city="New York")
+
+# Positional arguments: (1, 2, 3)
+# Keyword arguments: {'name': 'Alice', 'age': 30, 'city': 'New York'}
+```
