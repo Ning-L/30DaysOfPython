@@ -3419,6 +3419,7 @@ np.array(range(0, 11)) + 2
 - every array has only one data type for all items
 - numpy arrays occupied less space than python lists
 - numpy arrays support boolean indexing (ex: `Z == 0`, `Z[Z > 1]`, `Z[Z == 1]`)
+- Attention, Numpy and Pandas don't know how to manage NaN in int, so we need to convert to the type float when series contain missing values.
 
 # Day 25: `pandas` module
 
@@ -3453,7 +3454,7 @@ print(s)
 # 4    5
 # dtype: int64
 
-s = pd.Series(nums, index = [1, 2, 3, 4, 5]) # with customized index
+s = pd.Series(nums, index = [1, 2, 3, 4, 5]) # with customized index, be careful, this can be tricky, to use method "reset_index"
 print(s)
 # 1    1
 # 2    2
@@ -3471,7 +3472,13 @@ fruits = pd.Series(fruits, index=list(range(len(fruits)+1))[1:]) # or index = [1
 
 """
 In `pandas`, when a `Series` contains strings or mixed types, the dtype is "object".
+pandas has a type "category" which is equivalent to the "factor" in R.
 """
+fruits.astype("category")
+# 1    Orange
+# 2    Banana
+# 3     Mango
+# dtype: category
 
 len(fruits) # 3
 
