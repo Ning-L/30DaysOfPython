@@ -1272,6 +1272,7 @@ we can use the rename function directly: `fullname()`
 
     ```py
     from statistics import * # importing all the statistics modules,
+    # no longer need to specify the module name before the methods.
     # but not recommended as "*" create ambiguity for functions available in the environment
     ages = [20, 20, 4, 24, 25, 22, 26, 20, 23, 22, 26]
     print(mean(ages))       # ~22.9
@@ -2886,6 +2887,64 @@ print(my_car$year)  # Output: 2020
 # Call methods
 start_engine(my_car)  # Output: 2020 Toyota Camry engine started.
 stop_engine(my_car)  # Output: 2020 Toyota Camry engine stopped.
+```
+
+## An more complexe example
+
+```py
+class chat:  # Définition de notre classe Personne
+    """Classe définissant un chat caractérisé par :
+    - sa couleur
+    - son âge
+    - son caractère
+    - son poids
+    - son maitre
+    - son nom
+
+    L'objet chat a deux méthodes : nourrir et litiere"""
+
+    def __init__(self): # to initialize the instantiated object
+        # Notre méthode constructeur -
+        # self c'est notre objet qu'on est en train de créer
+        self.nom = ""
+        self.couleur = "Roux"
+        self.age = 10
+        self.caractere = "Joueur"
+        self.poids = 3
+        self.maitre = "Jeanne"
+        """Par défaut, notre ventre est vide"""
+        self.ventre = ""
+
+    def nourrir(self, nourriture):
+        """Méthode permettant de donner à manger au chat.
+        Si le ventre n'est pas vide, on met une virgule avant de rajouter
+        la nourriture"""
+        if self.ventre != "":
+            self.ventre += ","
+        self.ventre += nourriture
+
+    def litiere(self):
+        """Méthode permettant au chat d'aller à sa litière :
+        en conséquence son ventre est vide"""
+        self.ventre = ""
+        print(self.nom, "a le ventre vide")
+
+    def __getattribute__(self, key):
+        return print(key, "n'est pas un attribut de la classe chat")
+
+    def __repr__(self): # to modify its display
+        return "Je suis une instance de la classe chat"
+
+mon_chat = chat()
+print(mon_chat.nom)
+# Martin
+
+mon_chat.origine
+# origine n'est pas un attribut de la classe chat
+
+print(mon_chat)
+# <__main__.chat object at 0x7fd9a47c5d50>
+# Je suis une instance de la classe chat
 ```
 
 # Day 23: Virtual environment
