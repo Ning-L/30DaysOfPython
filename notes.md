@@ -3765,8 +3765,18 @@ df.loc[:, ['Name', 'Country', 'City']]
 ## find unique values of a column
 df["Name"].unique()
 
-# nb of unique element in a column
+## nb of unique element in a column
 df[["Gender"]].nunique() 
+
+### on multiple cols 
+df.loc[:, ["Gender", "Heigh"]].nunique()
+# Gender        2
+# heigh     10000
+# dtype: int64
+df.loc[:, ["Gender", "Heigh"]].count()
+# Gender    10000
+# heigh     10000
+# dtype: int64
 
 ## create new col
 df["Gender_abbr"] = df["Gender"].str[:1]
@@ -3788,8 +3798,20 @@ df.head()
 dataframe_name.drop(["column1", "column2"], axis=1, inplace=True)
 dataframe_name.drop(index=[row1, row2], axis=0, inplace=True)
 
-## `dropna`() removes rows with missing NaN values from the DataFrame
+## `dropna`() removes all rows with missing NaN values from the DataFrame
 dataframe_name.dropna(axis=0, inplace=True)
+### or only based on specified column
+dataframe_name.dropna(subset=["variable1"])
+
+## pandas can replace NaN by a value using fillna()
+dataframe_name.dropna(subset=["variable1"]).fillna(0) # replace by 0
+dataframe_name["variable1"].fillna(dataframe_name["variable1"].median()) # impute by the median
+
+## combiane .isna() or .isnull() with .mean() to check the magnitude of missing values in data
+dataframe_name.isnull().mean().sort_values(ascending=False)
+
+## check existance with .isin()
+dataframe_name["variable1"].isin(["value1", "value2"])
 
 ## `duplicated()` duplicate or repetitive values or records within a data set.
 dataframe_name.duplicated()
@@ -3826,7 +3848,7 @@ df["age"] > 35
 df[df["age"] > 35] # subset rows having age > 35
 df["Gender"].str.startswith("M") # filter on strings
 """
-`str.` is a Pandas method which help to treat the values of a vector as string  
+`str.` is a Pandas method which help to treat the values of a vector (Series) as string  
 """
 df.loc[df["Gender"].str.startswith("M")].head(2) # then we can combine with the loc method
 
@@ -3835,6 +3857,29 @@ df = df.sort_values("heigh", ascending=False)
 
 ## save to CSV
 df.to_csv("new_file.csv")
+
+## stats on one, multiple or all columns
+df["Height_log"].sum()
+df["Height_log"].mean()
+
+df.loc[:, ["Height_log", "Weight_log"]].sum()
+df.loc[:, ["Height_log", "Weight_log"]].mean()
+
+df.mean(numeric_only=True) # calculate only on num cols
+## or
+df.select_dtypes(include="number").agg(func=sum)
+
+## the `agg` method helps to define the wanted stats for specified cols
+df.agg({
+    "Height_log": ["mean", "std", "var"],
+    "weight": ["mean"],
+    "Gender": "nuniqud"
+}) # the output is a dataFrame
+df.sum() # the output is an indexed pandas Series, useful to transform it into dataframe and use reset_index
+## for example:
+df_totales = pd.DataFrame(
+    df.sum(numeric_only=True), columns=["total"]
+).reset_index(names="trait")
 ```
 
 ### Some operations in different languages
