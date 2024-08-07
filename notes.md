@@ -3687,11 +3687,23 @@ df.tail(n = 2) # show last two rows
 # 9998  Female  69.034243  163.852461
 # 9999  Female  61.944246  113.649103
 
+df.axes
+# [RangeIndex(start=0, stop=10000, step=1), Index(['Gender', 'Height', 'Weight'], dtype='object')]
+
+df.index
+# RangeIndex(start=0, stop=10000, step=1)
+
 df.shape # data dimension
 # (10000, 3)
 
 df.columns # print all the columns
 # Index(['Gender', 'Height', 'Weight'], dtype='object')
+
+"""
+df["Gender"] returns a pandas Series
+df[["Gender"]] returns a pandas dataFrame
+df.loc[:, ['Gender']] returns a pandas dataFrame, but more explicite
+"""
 
 # get a specific column, it's a Series
 heights = df['Height'] # this is now a series
@@ -3743,6 +3755,8 @@ df.info()
 
 ## subset columns
 df[['Name', 'Country', 'City']]
+## or 
+df.loc[:, ['Name', 'Country', 'City']]
 #        Name  Country       City
 # 0  Asabeneh  Finland   Helsinki
 # 1     David       UK     London
@@ -3750,6 +3764,23 @@ df[['Name', 'Country', 'City']]
 
 ## find unique values of a column
 df["Name"].unique()
+
+# nb of unique element in a column
+df[["Gender"]].nunique() 
+
+## create new col
+df["Gender_abbr"] = df["Gender"].str[:1]
+## or with assign, but need to affect to df to modifiy the df
+df.assign(Height_log10=lambda x: np.log10(x["Height"]))
+
+## create multiple vars at onece based on existing cols
+vars = ["Height", "Weight"]
+df[[v + "_log" for v in vars]] = np.log(df.loc[:, vars])
+df.head(3)
+
+## rename the columns
+df = df.rename({"Height": "heigh", "Weight": "weight"}, axis=1) #or axis="column"
+df.head()
 
 ## `drop()` method to remove specific rows or columns,
 # axis = 0: by column = column-wise = along the rows
@@ -3782,21 +3813,43 @@ df["status"].replace("In Progress", "Active", inplace=True)
 
 
 ## access to a specific cell
-df.iloc[1,2] # "London", 2nd row and the 3rd col
-df.loc[1, "City"] # "London", 2nd row and the 3rd col
+df.iloc[1,2] # "London", 2nd row and the 3rd col (integer position-based indexing)
+df.loc[1, "City"] # "London", 2nd row and the 3rd col (label-based indexing)
 
 df.iloc[1,2:4]
 # City      London
 # Weight        78
 # Name: 1, dtype: object
 
-## comparison
+## filter with boolean mask
 df["age"] > 35
 df[df["age"] > 35] # subset rows having age > 35
+df["Gender"].str.startswith("M") # filter on strings
+"""
+`str.` is a Pandas method which help to treat the values of a vector as string  
+"""
+df.loc[df["Gender"].str.startswith("M")].head(2) # then we can combine with the loc method
+
+## sorting
+df = df.sort_values("heigh", ascending=False)
 
 ## save to CSV
 df.to_csv("new_file.csv")
 ```
+
+### Some operations in different languages
+
+| Operation | SQL | pandas | dplyr (`R`) | data.table (`R`) |
+|-----------|-----|--------|-------------|------------------|
+| Retrieve column names | - | `df.columns` | `colnames(df)` | `colnames(df)` |
+| Retrieve dimensions | - | `df.shape` | `dim(df)` | `dim(df)` |
+| Retrieve unique values of a variable | - | `df['myvar'].nunique()` | `df %>%  summarise(distinct(myvar))` | `df[,uniqueN(myvar)]` |
+| Select variables by name | `SELECT` | `df[['Autres transports','Energie']]` | `df %>% select(Autres transports, Energie)` | `df[, c('Autres transports','Energie')]` |
+| Select observations based on one or more conditions | `FILTER` | `df[df['Agriculture']>2000]` | `df %>% filter(Agriculture>2000)` | `df[Agriculture>2000]` |
+| Sort the table by one or more variables | `SORT BY` | `df.sort_values(['Commune','Agriculture'])` | `df %>% arrange(Commune, Agriculture)` | `df[order(Commune, Agriculture)]` |
+| Add variables that are functions of other variables | `SELECT *, LOG(Agriculture) AS x FROM df` | `df['x'] = np.log(df['Agriculture'])` | `df %>% mutate(x = log(Agriculture))` | `df[,x := log(Agriculture)]` |
+| Perform an operation by group | `GROUP BY` | `df.groupby('Commune').mean()` | `df %>% group_by(Commune) %>% summarise(m = mean)` | `df[,mean(Commune), by = Commune]` |
+| Join two databases (inner join) | `SELECT * FROM table1 INNER JOIN table2 ON table1.id = table2.x` | `table1.merge(table2, left_on = 'id', right_on = 'x')` | `table1 %>% inner_join(table2, by = c('id'='x'))` | `merge(table1, table2, by.x = 'id', by.y = 'x')` |
 
 # Attributes vs. Methods
 
