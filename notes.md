@@ -3745,6 +3745,8 @@ df.info()
 #  2   Weight  10000 non-null  float64
 # dtypes: float64(2), object(1)
 # memory usage: 234.5+ KB
+
+df.dtypes # show data type of all columns
 ```
 
 ## Operations on DataFrame
@@ -3851,6 +3853,16 @@ df["Gender"].str.startswith("M") # filter on strings
 `str.` is a Pandas method which help to treat the values of a vector (Series) as string  
 """
 df.loc[df["Gender"].str.startswith("M")].head(2) # then we can combine with the loc method
+
+## element-wise division or multiplication
+# pd.DataFrame.div(self, axis)
+# pd.DataFrame.mul(self, axis)
+
+## reshape
+pd.melt(df) # gather columns into rows, 'longer' format
+df.pivot(columns = "var", values = "val") # spread rows into columns, 'wider' format 
+pd.concat([df1, df2]) # append rows of dfs
+pd.concat([df1, df2], axis = 1) # append columns
 
 ## sorting
 df = df.sort_values("heigh", ascending=False)
