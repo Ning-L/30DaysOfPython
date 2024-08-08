@@ -1,0 +1,1 @@
+This folder contains exercices from https://pythonds.linogaliana.fr
