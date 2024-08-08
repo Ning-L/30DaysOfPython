@@ -154,6 +154,9 @@ print(result)  # Output: 6
 - The **`<<`** and **`>>`** are the bitwise left and right shift operators in Python.
 The equivalent in R is `bitwShiftL()` and `bitwShiftR`.
 
+- In Python, the **`~`** is the bitwise NOT operator.
+P.ex, it can be used to negate the boolean Series returned by `.isin()`.
+
 ## Comparison
 
 Apart from the ordinary comparison operators such as `>`, `<`, `==`, `!=`,
