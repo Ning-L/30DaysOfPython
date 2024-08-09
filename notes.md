@@ -3910,6 +3910,59 @@ df_totales = pd.DataFrame(
 | Perform an operation by group | `GROUP BY` | `df.groupby('Commune').mean()` | `df %>% group_by(Commune) %>% summarise(m = mean)` | `df[,mean(Commune), by = Commune]` |
 | Join two databases (inner join) | `SELECT * FROM table1 INNER JOIN table2 ON table1.id = table2.x` | `table1.merge(table2, left_on = 'id', right_on = 'x')` | `table1 %>% inner_join(table2, by = c('id'='x'))` | `merge(table1, table2, by.x = 'id', by.y = 'x')` |
 
+## `pandas.DataFrame.pipe`
+
+Use `.pipe` when chaining together functions that expect Series, DataFrames or GroupBy objects.
+
+```py
+DataFrame.pipe(func, *args, **kwargs)
+
+## example
+data = [[8000, 1000], [9500, np.nan], [5000, 2000]]
+df = pd.DataFrame(data, columns=['Salary', 'Others'])
+
+def subtract_federal_tax(df):
+    return df * 0.9
+def subtract_state_tax(df, rate):
+    return df * (1 - rate)
+def subtract_national_insurance(df, rate, rate_increase):
+    new_rate = rate + rate_increase
+    return df * (1 - new_rate)
+
+### instead of writing
+subtract_national_insurance(
+    subtract_state_tax(subtract_federal_tax(df), rate=0.12),
+    rate=0.05,
+    rate_increase=0.02)
+
+### use .pipe
+(
+    df.pipe(subtract_federal_tax)
+    .pipe(subtract_state_tax, rate=0.12)
+    .pipe(subtract_national_insurance, rate=0.05, rate_increase=0.02)
+)
+    # Salary   Others
+# 0  5892.48   736.56
+# 1  6997.32      NaN
+# 2  3682.80  1473.12
+
+"""
+If we have a function that takes the data as the 2nd argument, pass a tuple indicating which keyword expects the data. For example:
+"""
+def subtract_national_insurance(rate, df, rate_increase):
+    new_rate = rate + rate_increase
+    return df * (1 - new_rate)
+(
+    df.pipe(subtract_federal_tax)
+    .pipe(subtract_state_tax, rate=0.12)
+    .pipe(
+        (subtract_national_insurance, 'df'),
+        rate=0.05,
+        rate_increase=0.02
+    )
+)
+```
+
 # Attributes vs. Methods
 
 In Python, attributes and methods are both associated with objects, but they serve different purposes.
